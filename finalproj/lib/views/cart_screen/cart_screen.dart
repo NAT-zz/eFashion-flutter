@@ -69,6 +69,7 @@ class CartScreen extends StatelessWidget {
                               );
                             })),
                     Row(
+                      //lol
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         "Total price"
