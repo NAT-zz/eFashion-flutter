@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
-
+  //testing
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(CartController());
@@ -69,7 +69,6 @@ class CartScreen extends StatelessWidget {
                               );
                             })),
                     Row(
-                      //lol
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         "Total price"
