@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "776815399611",
+    "project_id": "efashion-f1112",
+    "storage_bucket": "efashion-f1112.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776815399611:android:e9791f593be53b98120f9e",
+        "android_client_info": {
+          "package_name": "com.example.finalproj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776815399611-kvmno8jk920jpbioq48ccd5s3f5954vq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finalproj",
+            "certificate_hash": "5b3cb84c57fd551ffc1674e1fe4b3cdb90b35471"
+          }
+        },
+        {
+          "client_id": "776815399611-60io86qktcp3aeavp0are9713qe02dt1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWmJ89tgypt4ijO6huMxCsHZ-JcLLJqK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776815399611-60io86qktcp3aeavp0are9713qe02dt1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
