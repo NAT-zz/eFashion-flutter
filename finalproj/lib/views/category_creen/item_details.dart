@@ -1,6 +1,7 @@
 import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/consts/lists.dart';
 import 'package:finalproj/controllers/product_controller.dart';
+import 'package:finalproj/views/chat_screen/chat_screen.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -28,14 +29,27 @@ class ItemDetails extends StatelessWidget {
       child: Scaffold(
           backgroundColor: whiteColor,
           appBar: AppBar(
-            leading: IconButton(onPressed: (){
-                controller.resetValue();
-                Get.back();
-            }, icon: const Icon(Icons.arrow_back)),
+            leading: IconButton(
+                onPressed: () {
+                  controller.resetValue();
+                  Get.back();
+                },
+                icon: const Icon(Icons.arrow_back)),
             title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
             actions: [
               IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+              IconButton(onPressed: () {
+                if(controller.isFav.value)
+                {
+                  controller.removeFromWishlist(data.id);
+                  controller.isFav(false);
+                }else{
+                  controller.addToWishlist(data.id);
+                  controller.isFav(true);
+                }
+
+
+              }, icon: const Icon(Icons.favorite_outlined)),
             ],
           ),
           body: Column(
@@ -60,7 +74,7 @@ class ItemDetails extends StatelessWidget {
                             fit: BoxFit.cover,
                           );
                         }),
-    
+
                     10.heightBox,
                     // title and detais section
                     title!.text
@@ -88,9 +102,9 @@ class ItemDetails extends StatelessWidget {
                         .fontFamily(bold)
                         .size(18)
                         .make(),
-    
+
                     10.heightBox,
-    
+
                     Row(
                       children: [
                         Expanded(
@@ -110,8 +124,14 @@ class ItemDetails extends StatelessWidget {
                         )),
                         const CircleAvatar(
                           backgroundColor: Colors.white,
-                          child: Icon(Icons.message_rounded, color: darkFontGrey),
-                        ),
+                          child:
+                              Icon(Icons.message_rounded, color: darkFontGrey),
+                        ).onTap(() {
+                          Get.to(
+                            () => const ChatScreen(),
+                            arguments: [data['p_seller'], data['vendor_id']],
+                          );
+                        }),
                       ],
                     )
                         .box
@@ -119,7 +139,7 @@ class ItemDetails extends StatelessWidget {
                         .padding(const EdgeInsets.symmetric(horizontal: 16))
                         .color(textfieldGrey)
                         .make(),
-    
+
                     //color section
                     20.heightBox,
                     Obx(
@@ -129,7 +149,8 @@ class ItemDetails extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: 100,
-                                child: "Color: ".text.color(textfieldGrey).make(),
+                                child:
+                                    "Color: ".text.color(textfieldGrey).make(),
                               ),
                               Row(
                                 children: List.generate(
@@ -140,15 +161,16 @@ class ItemDetails extends StatelessWidget {
                                             VxBox()
                                                 .size(40, 40)
                                                 .roundedFull
-                                                .color(
-                                                    Color(data['p_colors'][index])
-                                                        .withOpacity(1.0))
+                                                .color(Color(
+                                                        data['p_colors'][index])
+                                                    .withOpacity(1.0))
                                                 .margin(
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 4))
                                                 .make()
                                                 .onTap(() {
-                                              controller.changeColorIndex(index);
+                                              controller
+                                                  .changeColorIndex(index);
                                             }),
                                             Visibility(
                                                 visible: index ==
@@ -160,14 +182,16 @@ class ItemDetails extends StatelessWidget {
                               )
                             ],
                           ).box.padding(const EdgeInsets.all(8)).make(),
-    
+
                           // quantity row
                           Row(
                             children: [
                               SizedBox(
                                 width: 100,
-                                child:
-                                    "Quantity: ".text.color(textfieldGrey).make(),
+                                child: "Quantity: "
+                                    .text
+                                    .color(textfieldGrey)
+                                    .make(),
                               ),
                               Obx(
                                 () => Row(
@@ -175,7 +199,8 @@ class ItemDetails extends StatelessWidget {
                                     IconButton(
                                         onPressed: () {
                                           controller.decreaseQuantity();
-                                          controller.calculateTotalPrice(int.parse(data['p_price']));
+                                          controller.calculateTotalPrice(
+                                              int.parse(data['p_price']));
                                         },
                                         icon: const Icon(Icons.remove)),
                                     controller.quantity.value.text
@@ -187,7 +212,8 @@ class ItemDetails extends StatelessWidget {
                                         onPressed: () {
                                           controller.increaseQuantity(
                                               int.parse(data['p_quantity']));
-                                          controller.calculateTotalPrice(int.parse(data['p_price']));
+                                          controller.calculateTotalPrice(
+                                              int.parse(data['p_price']));
                                         },
                                         icon: const Icon(Icons.add)),
                                     10.widthBox,
@@ -200,13 +226,14 @@ class ItemDetails extends StatelessWidget {
                               ),
                             ],
                           ).box.padding(const EdgeInsets.all(8)).make(),
-    
+
                           // total row
                           Row(
                             children: [
                               SizedBox(
                                 width: 100,
-                                child: "Total: ".text.color(textfieldGrey).make(),
+                                child:
+                                    "Total: ".text.color(textfieldGrey).make(),
                               ),
                               "${controller.totalPrice.value}"
                                   .numCurrency
@@ -220,7 +247,7 @@ class ItemDetails extends StatelessWidget {
                         ],
                       ).box.white.shadowSm.make(),
                     ),
-    
+
                     //description section
                     10.heightBox,
                     "Description"
@@ -230,10 +257,10 @@ class ItemDetails extends StatelessWidget {
                         .make(),
                     10.heightBox,
                     "${data['p_desc']}".text.color(darkFontGrey).make(),
-    
+
                     // button section
                     10.heightBox,
-    
+
                     ListView(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -249,7 +276,7 @@ class ItemDetails extends StatelessWidget {
                               )),
                     ),
                     20.heightBox,
-    
+
                     //products you may like section
                     productYouMayAlsoLike.text
                         .fontFamily(bold)
@@ -257,14 +284,15 @@ class ItemDetails extends StatelessWidget {
                         .color(darkFontGrey)
                         .make(),
                     10.heightBox,
-    
+
                     SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: List.generate(
                               6,
                               (index) => Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Image.asset(imgFc1,
                                           width: 150, fit: BoxFit.cover),
@@ -300,7 +328,6 @@ class ItemDetails extends StatelessWidget {
                 child: ourButton(
                     color: redColor,
                     onPress: () {
-    
                       controller.addToCart(
                         color: data['p_colors'][controller.colorIndex.value],
                         context: context,

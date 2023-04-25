@@ -1,4 +1,5 @@
 import 'package:finalproj/consts/consts.dart';
+import 'package:flutter/services.dart';
 
 class FirestoreServices {
   static getUser(uid) {
@@ -25,7 +26,17 @@ class FirestoreServices {
   }
 
   //delete doc
-  static deleteDocument(docId){
+  static deleteDocument(docId) {
     return firestore.collection(cartCollection).doc(docId).delete();
+  }
+
+  // get all chat messages
+  static getChatMessages(docId) {
+    return firestore
+        .collection(chatsCollection)
+        .doc(docId)
+        .collection(messagesCollection)
+        .orderBy('created_on', descending: false)
+        .snapshots();
   }
 }

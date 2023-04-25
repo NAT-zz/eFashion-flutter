@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
   @override
-  //bruhhhh
   Widget build(BuildContext context) {
     var controller = Get.put(CartController());
     return Scaffold(
