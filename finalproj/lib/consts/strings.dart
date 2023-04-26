@@ -71,3 +71,5 @@ const logout = "Log Out",
   oldpass = "Old Password",
   newpass = "New Password";
 
+// for payment
+const paypal = "Paypal", cod = "Cash On Delivery";

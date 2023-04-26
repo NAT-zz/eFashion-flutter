@@ -40,10 +40,9 @@ const itemDetailButtonsList = [
   supportPolicy
 ];
 
-const profileButtonsList = [
-  orders, wishlist, message
-];
+const profileButtonsList = [orders, wishlist, message];
 
-const proflieButtonIcon = [
-  icOrder, icOrder, icMessages
-];
+const proflieButtonIcon = [icOrder, icOrder, icMessages];
+
+const paymentMethodsImg = [imgPaypal, imgCod];
+const paymentMethods = [paypal, cod];

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/controllers/cart_controller.dart';
 import 'package:finalproj/services/firestore_service.dart';
+import 'package:finalproj/views/cart_screen/shipping_creeen.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,6 +16,17 @@ class CartScreen extends StatelessWidget {
     var controller = Get.put(CartController());
     return Scaffold(
         backgroundColor: whiteColor,
+        bottomNavigationBar: SizedBox(
+          height: 60,
+          child: ourButton(
+            color: redColor,
+            onPress: () {
+              Get.to(() => const ShippingDetails());
+            },
+            textColor: whiteColor,
+            title: "Proceed to shipping",
+          ),
+        ),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: "Shopping cart"
@@ -38,6 +50,8 @@ class CartScreen extends StatelessWidget {
               } else {
                 var data = snapshot.data!.docs;
                 controller.calculate(data);
+                controller.productSnapshot = data;
+
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(children: [
@@ -92,15 +106,15 @@ class CartScreen extends StatelessWidget {
                         .roundedSM
                         .make(),
                     10.heightBox,
-                    SizedBox(
-                      width: context.screenWidth - 60,
-                      child: ourButton(
-                        color: redColor,
-                        onPress: () {},
-                        textColor: whiteColor,
-                        title: "Proceed to shipping",
-                      ),
-                    )
+                    // SizedBox(
+                    //   width: context.screenWidth - 60,
+                    //   child: ourButton(
+                    //     color: redColor,
+                    //     onPress: () {},
+                    //     textColor: whiteColor,
+                    //     title: "Proceed to shipping",
+                    //   ),
+                    // )
                   ]),
                 );
               }
