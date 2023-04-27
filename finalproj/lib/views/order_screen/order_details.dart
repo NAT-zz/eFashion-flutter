@@ -40,8 +40,8 @@ class OrdersDetails extends StatelessWidget {
             title: "Delivered",
             showDone: data['order_delivered']
           ),
-          const Divider();
-          10.HeightBox,
+          const Divider(),
+          10.heightBox,
         ],
       )
     );
