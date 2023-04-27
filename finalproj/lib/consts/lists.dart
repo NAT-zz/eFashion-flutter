@@ -42,7 +42,7 @@ const itemDetailButtonsList = [
 
 const profileButtonsList = [orders, wishlist, message];
 
-const proflieButtonIcon = [icOrder, icOrder, icMessages];
+const proflieButtonIcon = [icOrder, icHeart, icMessages];
 
 const paymentMethodsImg = [imgPaypal, imgCod];
 const paymentMethods = [paypal, cod];

@@ -329,7 +329,8 @@ class ItemDetails extends StatelessWidget {
                 child: ourButton(
                     color: redColor,
                     onPress: () {
-                      controller.addToCart(
+                      if(controller.quantity.value>0){
+                        controller.addToCart(
                         color: data['p_colors'][controller.colorIndex.value],
                         context: context,
                         vendorId: data['vendor_id'],
@@ -339,7 +340,10 @@ class ItemDetails extends StatelessWidget {
                         title: data['p_name'],
                         tprice: controller.totalPrice.value,
                       );
-                      VxToast.show(context, msg: "Added to cart");
+                        VxToast.show(context, msg: "Added to cart");
+                      }else{
+                        VxToast.show(context, msg: "Atleast 1 product required");
+                      }
                     },
                     textColor: whiteColor,
                     title: "Add to cart"),

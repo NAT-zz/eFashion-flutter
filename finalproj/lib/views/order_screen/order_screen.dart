@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/services/firestore_service.dart';
+import 'package:finalproj/views/order_screen/order_details.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -47,7 +49,9 @@ class OrdersScreen extends StatelessWidget {
                           .fontFamily(bold)
                           .make(),
                       trailing: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => OrdersDetails(data: data[index]));
+                          },
                           icon: const Icon(Icons.arrow_forward_ios_rounded,
                               color: darkFontGrey)),
                     );

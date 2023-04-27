@@ -11,6 +11,7 @@ import 'package:finalproj/views/profile_screen/components/detail_card.dart';
 import 'package:finalproj/views/profile_screen/edit_profile.dart';
 import 'package:finalproj/views/wishlist_screen/wishlist_screen.dart';
 import 'package:finalproj/widgets_common/bg_widget.dart';
+import 'package:finalproj/widgets_common/loading_indicator.dart';
 import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -102,23 +103,53 @@ class ProfileScreen extends StatelessWidget {
                         ),
 
                         20.heightBox,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            detailsCard(
-                                count: "${data['cart_count']}",
-                                title: "Your Cart",
-                                width: context.screenWidth / 3.4),
-                            detailsCard(
-                                count: "${data['wishlist_count']}",
-                                title: "Your Wishlist",
-                                width: context.screenWidth / 3.4),
-                            detailsCard(
-                                count: "${data['order_count']}",
-                                title: "Your Orders",
-                                width: context.screenWidth / 3.4),
-                          ],
-                        ),
+
+                        FutureBuilder(
+                            future: FirestoreServices.getCounts(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot snapshot) {
+                              if (!snapshot.hasData) {
+                                return Center(child: loadingIndicator());
+                              } else {
+                                var countData = snapshot.data;
+
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    detailsCard(
+                                        count: countData[0].toString(),
+                                        title: "Your Cart",
+                                        width: context.screenWidth / 3.3),
+                                    detailsCard(
+                                        count: countData[1].toString(),
+                                        title: "Your Wishlist",
+                                        width: context.screenWidth / 3.3),
+                                    detailsCard(
+                                        count: countData[2].toString(),
+                                        title: "Your Orders",
+                                        width: context.screenWidth / 3.3),
+                                  ],
+                                );
+                              }
+                            }),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   children: [
+                        //     detailsCard(
+                        //         count: "${data['cart_count']}",
+                        //         title: "Your Cart",
+                        //         width: context.screenWidth / 3.4),
+                        //     detailsCard(
+                        //         count: "${data['wishlist_count']}",
+                        //         title: "Your Wishlist",
+                        //         width: context.screenWidth / 3.4),
+                        //     detailsCard(
+                        //         count: "${data['order_count']}",
+                        //         title: "Your Orders",
+                        //         width: context.screenWidth / 3.4),
+                        //   ],
+                        // ),
 
                         //buttons section
 
@@ -130,10 +161,9 @@ class ProfileScreen extends StatelessWidget {
                                 itemCount: profileButtonsList.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return ListTile(
-
                                     onTap: () {
-                                      switch(index) {
-                                        case 0: 
+                                      switch (index) {
+                                        case 0:
                                           Get.to(() => const OrdersScreen());
                                           break;
                                         case 1:
