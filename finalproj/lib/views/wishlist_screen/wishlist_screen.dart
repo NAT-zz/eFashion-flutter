@@ -5,19 +5,18 @@ import 'package:finalproj/widgets_common/loading_indicator.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-class MessagesScreen extends StatelessWidget {
-  const MessagesScreen({super.key});
+class WishlishScreen extends StatelessWidget {
+  const WishlishScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: whiteColor,
         appBar: AppBar(
           title:
-              "My Messages".text.color(darkFontGrey).fontFamily(semibold).make(),
+              "My Wishlist".text.color(darkFontGrey).fontFamily(semibold).make(),
         ),
         body: StreamBuilder(
-            stream: FirestoreServices.getAllMessages(),
+            stream: FirestoreServices.getWishLists(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
@@ -25,7 +24,7 @@ class MessagesScreen extends StatelessWidget {
                   child: loadingIndicator(),
                 );
               } else if (snapshot.data!.docs.isEmpty) {
-                return "No messages yet!".text.color(darkFontGrey).makeCentered();
+                return "No items yet!".text.color(darkFontGrey).makeCentered();
               } else {
                 return Container();
               }

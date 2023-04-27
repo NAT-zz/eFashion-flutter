@@ -5,8 +5,6 @@ import 'package:finalproj/services/firestore_service.dart';
 import 'package:finalproj/views/cart_screen/shipping_creeen.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
@@ -21,7 +19,13 @@ class CartScreen extends StatelessWidget {
           child: ourButton(
             color: redColor,
             onPress: () {
-              Get.to(() => const ShippingDetails());
+              // check if cart is empty
+              if(controller.totalP.value != 0) {
+                Get.to(() => const ShippingDetails());
+              }else{
+                VxToast.show(context, msg: "Add some item to your cart first!");
+              }
+              
             },
             textColor: whiteColor,
             title: "Proceed to shipping",
@@ -60,7 +64,11 @@ class CartScreen extends StatelessWidget {
                             itemCount: data.length,
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
-                                leading: Image.network("${data[index]['img']}"),
+                                leading: Image.network(
+                                  "${data[index]['img']}",
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                ),
                                 title:
                                     "${data[index]['title']} (x${data[index]['qty']})"
                                         .text
@@ -75,8 +83,8 @@ class CartScreen extends StatelessWidget {
                                     .make(),
                                 trailing:
                                     const Icon(Icons.delete, color: redColor)
-                                        .onTap(() {
-                                  FirestoreServices.deleteDocument(
+                                        .onTap(() async {
+                                  await FirestoreServices.deleteDocument(
                                       data[index].id);
                                 }),
                               );

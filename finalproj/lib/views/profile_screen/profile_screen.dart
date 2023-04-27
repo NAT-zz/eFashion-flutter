@@ -5,8 +5,11 @@ import 'package:finalproj/controllers/auth_controller.dart';
 import 'package:finalproj/controllers/profile_controller.dart';
 import 'package:finalproj/services/firestore_service.dart';
 import 'package:finalproj/views/auth_screen/login_screen.dart';
+import 'package:finalproj/views/chat_screen/messaging_creen.dart';
+import 'package:finalproj/views/order_screen/order_screen.dart';
 import 'package:finalproj/views/profile_screen/components/detail_card.dart';
 import 'package:finalproj/views/profile_screen/edit_profile.dart';
+import 'package:finalproj/views/wishlist_screen/wishlist_screen.dart';
 import 'package:finalproj/widgets_common/bg_widget.dart';
 import 'package:get/get.dart';
 
@@ -127,6 +130,20 @@ class ProfileScreen extends StatelessWidget {
                                 itemCount: profileButtonsList.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return ListTile(
+
+                                    onTap: () {
+                                      switch(index) {
+                                        case 0: 
+                                          Get.to(() => const OrdersScreen());
+                                          break;
+                                        case 1:
+                                          Get.to(() => const WishlishScreen());
+                                          break;
+                                        case 2:
+                                          Get.to(() => const MessagesScreen());
+                                          break;
+                                      }
+                                    },
                                     leading: Image.asset(
                                       proflieButtonIcon[index],
                                       width: 22,

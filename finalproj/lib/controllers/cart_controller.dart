@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/controllers/home_controller.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -16,9 +17,11 @@ class CartController extends GetxController {
   late dynamic productSnapshot;
   var products = [];
 
+  var placingOrder = false.obs;
+
   calculate(data) {
     totalP.value = 0;
-
+    
     for (var i = 0; i < data.length; i++) {
       totalP.value = totalP.value + int.parse(data[i]['tprice'].toString());
     }
@@ -28,7 +31,9 @@ class CartController extends GetxController {
     paymentIndex.value = index;
   }
 
-  placeMyOder({required orderPaymentMethod,required totalAmount}) async {
+  placeMyOder(
+      {required orderPaymentMethod, required totalAmount}) async {
+    placingOrder(true);
 
     await getProductDetails();
     await firestore.collection(ordersCollection).doc().set({
@@ -51,20 +56,27 @@ class CartController extends GetxController {
       'total_amount': totalAmount,
       'orders': FieldValue.arrayUnion(products)
     });
+    placingOrder(false);
   }
 
-  getProductDetails(){
+  getProductDetails() {
     products.clear();
     for (var i = 0; i < productSnapshot.length; i++) {
       products.add({
         'color': productSnapshot[i]['color'],
         'img': productSnapshot[i]['img'],
+        'vendor_id': productSnapshot[i]['vendor_id'],
+        'tprice': productSnapshot[i]['tprice'],
         'qty': productSnapshot[i]['qty'],
         'title': productSnapshot[i]['title'],
-
       });
     }
     print(products);
   }
 
+  clearCart(){
+    for (var i = 0; i < productSnapshot.length; i++) {
+      firestore.collection(cartCollection).doc(productSnapshot[i].id).delete();
+    } 
+  }
 }
