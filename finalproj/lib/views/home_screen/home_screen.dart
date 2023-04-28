@@ -5,6 +5,7 @@ import 'package:finalproj/controllers/home_controller.dart';
 import 'package:finalproj/services/firestore_service.dart';
 import 'package:finalproj/views/category_creen/item_details.dart';
 import 'package:finalproj/views/home_screen/components/featured_button.dart';
+import 'package:finalproj/views/home_screen/search_screen.dart';
 import 'package:finalproj/widgets_common/home_buttons.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<HomeController>();
     return Container(
         padding: const EdgeInsets.all(12),
         color: lightGrey,
@@ -29,13 +31,19 @@ class HomeScreen extends StatelessWidget {
               height: 60,
               color: lightGrey,
               child: TextFormField(
-                decoration: const InputDecoration(
+                controller: controller.searchController,
+                decoration: InputDecoration(
                   border: InputBorder.none,
-                  suffixIcon: Icon(Icons.search),
+                  suffixIcon: const Icon(Icons.search).onTap(() {
+                    if (controller.searchController.text.isNotEmptyAndNotNull) {
+                      Get.to(() => SearchScreen(
+                          title: controller.searchController.text));
+                    }
+                  }),
                   filled: true,
                   fillColor: whiteColor,
                   hintText: searchAnything,
-                  hintStyle: TextStyle(color: textfieldGrey),
+                  hintStyle: const TextStyle(color: textfieldGrey),
                 ),
               ),
             ),
@@ -153,74 +161,95 @@ class HomeScreen extends StatelessWidget {
 
                       // featured product
                       20.heightBox,
-                      // Container(
-                      //   padding: const EdgeInsets.all(12),
-                      //   width: double.infinity,
-                      //   decoration: const BoxDecoration(
-                      //     color: redColor,
-                      //   ),
-                      //   child: Column(
-                      //       crossAxisAlignment: CrossAxisAlignment.start,
-                      //       children: [
-                      //         featuredProduct.text.white
-                      //             .fontFamily(bold)
-                      //             .size(18)
-                      //             .make(),
-                      //         10.heightBox,
-                      //         SingleChildScrollView(
-                      //             scrollDirection: Axis.horizontal,
-                      //             child: FutureBuilder(
-                      //                 future: FirestoreServices.allProducts(),
-                      //                 builder: (BuildContext context,
-                      //                     AsyncSnapshot<QuerySnapshot>
-                      //                         featuredsnapshot) {
-                      //                   if (!featuredsnapshot.hasData) {
-                      //                     return Center(
-                      //                         child: loadingIndicator());
-                      //                   } else {
-                      //                     return Row(
-                      //                       children: List.generate(
-                      //                           featuredsnapshot
-                      //                               .data!.docs.length,
-                      //                           (index) => Column(
-                      //                                 crossAxisAlignment:
-                      //                                     CrossAxisAlignment
-                      //                                         .start,
-                      //                                 children: [
-                      //                                   Image.asset(imgFc1,
-                      //                                       width: 150,
-                      //                                       fit: BoxFit.cover),
-                      //                                   10.heightBox,
-                      //                                   "Dress"
-                      //                                       .text
-                      //                                       .fontFamily(
-                      //                                           semibold)
-                      //                                       .color(darkFontGrey)
-                      //                                       .make(),
-                      //                                   10.heightBox,
-                      //                                   "\$600"
-                      //                                       .text
-                      //                                       .color(redColor)
-                      //                                       .fontFamily(bold)
-                      //                                       .size(16)
-                      //                                       .make(),
-                      //                                 ],
-                      //                               )
-                      //                                   .box
-                      //                                   .white
-                      //                                   .margin(const EdgeInsets
-                      //                                           .symmetric(
-                      //                                       horizontal: 4))
-                      //                                   .roundedSM
-                      //                                   .padding(
-                      //                                       const EdgeInsets
-                      //                                           .all(8))
-                      //                                   .make()),
-                      //                     );
-                      //                   }
-                      //                 })),
-                      //       ]),
-                      // ),
+                      Container(
+                        padding: const EdgeInsets.all(12),
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          color: redColor,
+                        ),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              featuredProduct.text.white
+                                  .fontFamily(bold)
+                                  .size(18)
+                                  .make(),
+                              10.heightBox,
+                              SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: FutureBuilder(
+                                      future: FirestoreServices
+                                          .getFeaturedProducts(),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<QuerySnapshot>
+                                              snapshot) {
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                              child: loadingIndicator());
+                                        } else if (snapshot
+                                            .data!.docs.isEmpty) {
+                                          return "No featured products"
+                                              .text
+                                              .white
+                                              .makeCentered();
+                                        } else {
+                                          var featuredData =
+                                              snapshot.data!.docs;
+
+                                          return Row(
+                                            children: List.generate(
+                                                featuredData.length,
+                                                (index) => Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Image.network(
+                                                            featuredData[index]
+                                                                ['p_imgs'][0],
+                                                            width: 130,
+                                                            height: 130,
+                                                            fit: BoxFit.cover),
+                                                        10.heightBox,
+                                                        "${featuredData[index]['p_name']}"
+                                                            .text
+                                                            .fontFamily(
+                                                                semibold)
+                                                            .color(darkFontGrey)
+                                                            .make(),
+                                                        10.heightBox,
+                                                        "${featuredData[index]['p_price']}"
+                                                            .numCurrency
+                                                            .text
+                                                            .color(redColor)
+                                                            .fontFamily(bold)
+                                                            .size(16)
+                                                            .make(),
+                                                      ],
+                                                    )
+                                                        .box
+                                                        .white
+                                                        .margin(const EdgeInsets
+                                                                .symmetric(
+                                                            horizontal: 4))
+                                                        .roundedSM
+                                                        .padding(
+                                                            const EdgeInsets
+                                                                .all(8))
+                                                        .make()
+                                                        .onTap(() {
+                                                      Get.to(() => ItemDetails(
+                                                            title:
+                                                                "${featuredData[index]['p_name']}",
+                                                            data: featuredData[
+                                                                index],
+                                                          ));
+                                                    })),
+                                          );
+                                        }
+                                      })),
+                            ]),
+                      ),
 
                       // third swiper
                       20.heightBox,

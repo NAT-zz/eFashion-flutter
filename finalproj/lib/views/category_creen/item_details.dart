@@ -19,7 +19,7 @@ class ItemDetails extends StatelessWidget {
     print("blue: " + Colors.blue.value.toString());
     print("black: " + Colors.black.value.toString());
 
-    var controller = Get.find<ProductController>();
+    var controller = Get.put(ProductController());
 
     return WillPopScope(
       onWillPop: () async {
@@ -329,20 +329,21 @@ class ItemDetails extends StatelessWidget {
                 child: ourButton(
                     color: redColor,
                     onPress: () {
-                      if(controller.quantity.value>0){
+                      if (controller.quantity.value > 0) {
                         controller.addToCart(
-                        color: data['p_colors'][controller.colorIndex.value],
-                        context: context,
-                        vendorId: data['vendor_id'],
-                        img: data['p_imgs'][0],
-                        qty: controller.quantity.value,
-                        sellername: data['p_seller'],
-                        title: data['p_name'],
-                        tprice: controller.totalPrice.value,
-                      );
+                          color: data['p_colors'][controller.colorIndex.value],
+                          context: context,
+                          vendorId: data['vendor_id'],
+                          img: data['p_imgs'][0],
+                          qty: controller.quantity.value,
+                          sellername: data['p_seller'],
+                          title: data['p_name'],
+                          tprice: controller.totalPrice.value,
+                        );
                         VxToast.show(context, msg: "Added to cart");
-                      }else{
-                        VxToast.show(context, msg: "Atleast 1 product required");
+                      } else {
+                        VxToast.show(context,
+                            msg: "Atleast 1 product required");
                       }
                     },
                     textColor: whiteColor,

@@ -17,6 +17,13 @@ class FirestoreServices {
         .snapshots();
   }
 
+  static getSubCategoryProducts(title){
+    return firestore
+        .collection(productsCollection)
+        .where('p_subcategory', isEqualTo: title)
+        .snapshots();
+  }
+
   //get cart
   static getCart(uid) {
     return firestore
@@ -88,10 +95,22 @@ class FirestoreServices {
     return res;
   }
 
-  static allProducts(){
-    return firestore
-        .collection(productsCollection)
-        .snapshots();
+  static allProducts() {
+    return firestore.collection(productsCollection).snapshots();
   }
 
+  // get featured product
+  static getFeaturedProducts() {
+    return firestore
+        .collection(productsCollection)
+        .where('is_featured', isEqualTo: true)
+        .get();
+  }
+
+  //get search product
+  static searchProducts(title) {
+    return firestore
+        .collection(productsCollection)
+        .get();
+  }
 }
