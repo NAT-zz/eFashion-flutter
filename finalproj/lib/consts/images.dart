@@ -37,6 +37,7 @@ const icPoints = "assets/icons/points.png";
 const icProfile = "assets/icons/profile.png";
 const icRefund = "assets/icons/refund.png";
 const icSearch = "assets/icons/search.png";
+const icSetting = "assets/icons/setting.png";
 const icShop = "assets/icons/shop.png";
 const icSplashBg = "assets/icons/splash_login_registration_background_image.png";
 const icSquareLogo = "assets/icons/square_logo.png";

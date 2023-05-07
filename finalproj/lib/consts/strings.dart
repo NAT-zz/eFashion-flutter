@@ -73,3 +73,15 @@ const logout = "Log Out",
 
 // for payment
 const paypal = "Paypal", cod = "Cash On Delivery";
+
+// for admin
+const dashboard = "Dashboard",
+  aorders = "Orders",
+  products = "Products",
+  settings = "Settings",
+  rating = "Rating",
+  totalSales = "Total Sales",
+  featured = "Featured",
+  edit = "Edit",
+  remove = "Remove",
+  unpaid = "Unpaid";

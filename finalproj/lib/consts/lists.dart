@@ -46,3 +46,9 @@ const proflieButtonIcon = [icOrder, icHeart, icMessages];
 
 const paymentMethodsImg = [imgPaypal, imgCod];
 const paymentMethods = [paypal, cod];
+
+const popupMenuTitles = [featured, edit, remove];
+const popupMenuIcons = [Icons.featured_play_list, Icons.edit, Icons.delete];
+
+const profileButtonTitles = ["Shop setting",message];
+const profileButtonIcons = [Icons.settings, Icons.chat];
