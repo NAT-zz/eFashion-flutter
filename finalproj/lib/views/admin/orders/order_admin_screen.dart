@@ -1,4 +1,7 @@
 
+import 'package:finalproj/views/admin/orders/order_admin_detail.dart';
+import 'package:get/get.dart';
+
 import '../../../consts/consts.dart';
 import '../../../widgets_common/text_style.dart';
 import '../Components/appbar_widget.dart';
@@ -23,7 +26,7 @@ class Orders_Admin_Screen extends StatelessWidget {
           child: Column(
               children: List.generate(20, (index) => ListTile(
                 onTap: () {
-                  
+                  Get.to(() => const OrderDetailAdmin());
                 },
                 tileColor: textfieldGrey,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),

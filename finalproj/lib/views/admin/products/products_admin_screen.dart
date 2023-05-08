@@ -1,5 +1,8 @@
 
 import 'package:finalproj/consts/lists.dart';
+import 'package:finalproj/views/admin/products/add_product.dart';
+import 'package:finalproj/views/admin/products/product_detail_admin.dart';
+import 'package:get/get.dart';
 
 import '../../../consts/consts.dart';
 import 'package:intl/intl.dart' as intl;
@@ -16,7 +19,9 @@ class Products_Admin_Screen extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => const AddProduct());
+        },
         child: const Icon(Icons.add),
         ),
       appBar: appbarWiget(products),
@@ -44,7 +49,9 @@ class Products_Admin_Screen extends StatelessWidget {
                         5.widthBox,
                         normalText(text: popupMenuTitles[index], color: darkFontGrey)
                       ],
-                      ).onTap(() {}),
+                      ).onTap(() {
+                        Get.to(() => const ProductDetailAdmin());
+                      }),
                     )
                     ),
                   ).box.white.width(200).make(),

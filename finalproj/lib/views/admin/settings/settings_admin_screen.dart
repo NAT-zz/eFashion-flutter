@@ -1,4 +1,6 @@
 
+import 'package:finalproj/views/admin/settings/message_screen.dart';
+import 'package:finalproj/views/admin/settings/shop_setting_screen.dart';
 import 'package:finalproj/views/profile_screen/edit_profile.dart';
 import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
@@ -13,7 +15,7 @@ class Setting_Admin_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: lightGrey,
+      backgroundColor: darkFontGrey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: boldText(text: settings, size: 16.0),
@@ -39,6 +41,17 @@ class Setting_Admin_Screen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: List.generate(2, (index) => ListTile(
+                  onTap: () {
+                    switch (index) {
+                      case 0:
+                        Get.to(() => const ShopSetting());
+                        break;
+                      case 1:
+                        Get.to(() => const MessageScreen());
+                        break;
+                      default:
+                    }
+                  },
                   leading: Icon(profileButtonIcons[index], color: whiteColor,),
                   title: normalText(text: profileButtonTitles[index]),
                 )),
