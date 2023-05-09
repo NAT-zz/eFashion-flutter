@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen>{
         if(user == null && mounted){
           Get.to(() => const LoginScreen());
         }else{
-          Get.to(() => const Home_Admin());
+          Get.to(() => const Home());
         }
        });
     });

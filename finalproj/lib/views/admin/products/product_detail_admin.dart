@@ -4,11 +4,14 @@ import 'package:finalproj/widgets_common/our_button.dart';
 import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
 
+
 import '../../../consts/consts.dart';
 import '../../../consts/lists.dart';
 
+
 class ProductDetailAdmin extends StatelessWidget {
   const ProductDetailAdmin({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +55,14 @@ class ProductDetailAdmin extends StatelessWidget {
               children: [
                 boldText(text: "Product title", color: fontGrey, size: 16.0),
                 10.heightBox,
+                Row(
+                  children: [
+                    boldText(text: "Category", color: fontGrey, size: 16.0),
+                    10.widthBox,
+                    normalText(text: "Subcategory", color: fontGrey, size: 16.0),
+                  ],
+                ),
+                10.heightBox,
                 //rating
                 VxRating(
                   isSelectable: false,
@@ -74,6 +85,7 @@ class ProductDetailAdmin extends StatelessWidget {
                 //     .size(18)
                 //     .make(),
 
+
                 20.heightBox,
                 Column(
                   children: [
@@ -87,7 +99,7 @@ class ProductDetailAdmin extends StatelessWidget {
                         Row(
                           children: List.generate(
                               3,
-                              (index) => 
+                              (index) =>
                                       VxBox()
                                           .size(40, 40)
                                           .roundedFull
@@ -98,7 +110,7 @@ class ProductDetailAdmin extends StatelessWidget {
                                           .make()
                                           .onTap(() {
                                       }),
-                                      
+                                     
                                     ),
                         )
                       ],
@@ -113,7 +125,7 @@ class ProductDetailAdmin extends StatelessWidget {
                           // child: "Quantity: ".text.color(textfieldGrey).make(),
                         ),
                         normalText(text: "20 items", color: fontGrey),
-                        
+                       
                       ],
                     ),
                   ],

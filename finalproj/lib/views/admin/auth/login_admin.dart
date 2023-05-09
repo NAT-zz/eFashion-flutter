@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:finalproj/consts/consts.dart';
+import 'package:finalproj/controllers/admin/auth_admin_controller.dart';
 import 'package:finalproj/controllers/auth_controller.dart';
-import 'package:finalproj/views/admin/auth/login_admin.dart';
+import 'package:finalproj/views/admin/home/home_admin.dart';
 import 'package:finalproj/views/auth_screen/signup_screen.dart';
 import 'package:finalproj/views/home_screen/home.dart';
 import 'package:finalproj/views/home_screen/home_screen.dart';
@@ -10,20 +11,21 @@ import 'package:finalproj/widgets_common/applogo_widget.dart';
 import 'package:finalproj/widgets_common/bg_widget.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
-import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
 
-import '../../consts/lists.dart';
+import '../../../widgets_common/text_style.dart';
+import '../../auth_screen/login_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+
+class LoginAdminScreen extends StatelessWidget {
+  const LoginAdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(AuthController());
+    var controller = Get.put(AuthAdminController());
 
     return bgWidget(
-        child: Scaffold(
+      child: Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
           child: Column(
@@ -39,20 +41,19 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    boldText(text: "You are logging as Customer", color: Colors.black, size: 16.0),
+                    boldText(text: "You are logging as Seller", color: Colors.black, size: 16.0),
                     (context.screenWidth-450).widthBox,
                     ourButton(
                       onPress: () {
-                        Get.to(() => const LoginAdminScreen());
+                        Get.to(() => const LoginScreen());
                       },
                       color: darkFontGrey,
-                      title: "Login as Seller",
+                      title: "Login as Customer",
                     ),
                     10.widthBox,
 
                   ],
                 ),
-                
                 10.heightBox,
                 customTextField(
                     title: email,
@@ -87,7 +88,7 @@ class LoginScreen extends StatelessWidget {
 
                             print("value is not null");
                             VxToast.show(context, msg: loggedIn);
-                            Get.off(() => const Home());
+                            Get.offAll(() => const Home_Admin());
                           }else{
                             print("value is null");
                             controller.isLoading(false);
@@ -95,33 +96,6 @@ class LoginScreen extends StatelessWidget {
                         });
                       }
                     ).box.width(context.screenWidth - 50).make(),
-                5.heightBox,
-                createNewAccount.text.color(fontGrey).make(),
-                5.heightBox,
-                ourButton(
-                    color: golden,
-                    title: singUp,
-                    textColor: redColor,
-                    onPress: () {
-                      Get.to(() => const SignupScreen());
-                    }).box.width(context.screenWidth - 50).make(),
-                10.heightBox,
-                loginWith.text.color(fontGrey).make(),
-                5.heightBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                      3,
-                      (index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                              backgroundColor: lightGrey,
-                              radius: 25,
-                              child: Image.asset(
-                                socialIconList[index],
-                                width: 30,
-                              )))),
-                )
               ],
             )
                 .box
@@ -137,3 +111,4 @@ class LoginScreen extends StatelessWidget {
     ));
   }
 }
+
