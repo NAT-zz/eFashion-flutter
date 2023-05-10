@@ -30,7 +30,7 @@ class Home_Admin extends StatelessWidget {
         onTap: (index) => {controller.navIndex.value = index},
         currentIndex: controller.navIndex.value,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Vx.purple100,
+        selectedItemColor: redColor,
         unselectedItemColor: darkFontGrey,
         items: bottomNavBar
       )),

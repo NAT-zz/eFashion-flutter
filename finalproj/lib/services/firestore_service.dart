@@ -9,6 +9,13 @@ class FirestoreServices {
         .snapshots();
   }
 
+  static getVendor(uid) {
+    return firestore
+        .collection(vendorsCollections)
+        .where('id', isEqualTo: uid)
+        .snapshots();
+  }
+
   //get products by category
   static getProducts(category) {
     return firestore

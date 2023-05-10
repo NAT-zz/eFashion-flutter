@@ -14,10 +14,10 @@ class ShopSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: darkFontGrey,
+      backgroundColor: whiteColor,
       appBar: AppBar(
-       title: boldText(text: "Shop Settings", size: 16.0),
-       actions: [TextButton(onPressed: () {}, child: normalText(text: "Save"))], 
+       title: boldText(text: "Shop Settings", size: 16.0, color: darkFontGrey),
+       actions: [TextButton(onPressed: () {}, child: normalText(text: "Save", color: darkFontGrey))], 
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

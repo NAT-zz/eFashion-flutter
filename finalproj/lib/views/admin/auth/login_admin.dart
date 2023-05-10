@@ -18,11 +18,11 @@ import '../../auth_screen/login_screen.dart';
 
 
 class LoginAdminScreen extends StatelessWidget {
-  const LoginAdminScreen({super.key});
+  const LoginAdminScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(AuthAdminController());
+    var controller = Get.put(AuthController());
 
     return bgWidget(
       child: Scaffold(
