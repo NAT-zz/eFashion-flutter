@@ -1,4 +1,5 @@
 
+import 'package:finalproj/controllers/admin/order_admin_controller.dart';
 import 'package:finalproj/views/profile_screen/edit_profile.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
@@ -8,12 +9,33 @@ import 'package:get/get.dart';
 import '../../../consts/consts.dart';
 import '../../../consts/lists.dart';
 import 'components/order_place.dart';
+import 'package:intl/intl.dart' as intl;
 
-class OrderDetailAdmin extends StatelessWidget {
-  const OrderDetailAdmin({Key? key}) : super(key: key);
+class OrderDetailAdmin extends StatefulWidget {
+  final dynamic data;
+  const OrderDetailAdmin({super.key, this.data});
+  @override
+  State<OrderDetailAdmin> createState() => _OrderDetailAdminState();
+}
 
+class _OrderDetailAdminState extends State<OrderDetailAdmin> {
+  var controller = Get.find<OrderController>();
+  // var controller = Get.put(OrderController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // controller.orders = controller.getOrders(widget.data);
+    controller.orders = widget.data['orders'][0];
+    print(widget.data['orders'][0]);
+    controller.confirmed = widget.data['order_confirmed'];
+    controller.onDelivery = widget.data['order_on_delivery'];
+    controller.delivered = widget.data['order_delivered'];
+    print(widget.data);
+  }
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -24,10 +46,16 @@ class OrderDetailAdmin extends StatelessWidget {
         ),
         title: boldText(text: "Order details", size: 16.0, color: fontGrey),
       ),
-      bottomNavigationBar: SizedBox(
+      bottomNavigationBar: Visibility(
+        visible: !controller.confirmed.value,
+        child: SizedBox(
         height: 60,
         width: context.screenWidth,
-        child: ourButton(color: Colors.green, onPress: () {}, title: "Confirm Order"),
+        child: ourButton(color: Colors.green, onPress: () {
+          controller.confirmed(true);
+          controller.changeStatus(title: "order_confirmed", status: true, docID: widget.data.id);
+        }, title: "Confirm Order"),
+      ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -37,6 +65,7 @@ class OrderDetailAdmin extends StatelessWidget {
               children: [
                 //order delivery section
                 Visibility(
+                  visible: controller.confirmed.value,
                   child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -44,7 +73,9 @@ class OrderDetailAdmin extends StatelessWidget {
                     SwitchListTile(
                       activeColor: Colors.green,
                       value: true,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        
+                      },
                       title: boldText(text: "Placed", color: fontGrey),
                     ),
                     SwitchListTile(
@@ -55,14 +86,20 @@ class OrderDetailAdmin extends StatelessWidget {
                     ),
                     SwitchListTile(
                       activeColor: Colors.green,
-                      value: true,
-                      onChanged: (value) {},
+                      value: controller.onDelivery.value,
+                      onChanged: (value) {
+                        controller.onDelivery.value = value;
+                        controller.changeStatus(title: "order_on_delivery", status: value, docID: widget.data.id);
+                      },
                       title: boldText(text: "On Delivery", color: fontGrey),
                     ),
                     SwitchListTile(
                       activeColor: Colors.green,
-                      value: true,
-                      onChanged: (value) {},
+                      value: controller.onDelivery.value,
+                      onChanged: (value) {
+                        controller.onDelivery.value = value;
+                        controller.changeStatus(title: "order_delivered", status: value, docID: widget.data.id);
+                      },
                       title: boldText(text: "Delivered", color: fontGrey),
                     )
                   ],
@@ -73,17 +110,16 @@ class OrderDetailAdmin extends StatelessWidget {
                 Column(
                   children: [
                     orderPlaceDetailsAdmin(
-                      d1: "data['order_code']",
-                      d2: "data['shipping_method']",
+                      d1: "${widget.data['order_code']}",
+                      d2: "${widget.data['shipping_method']}",
                       title1: "Order Code",
                       title2: "Shipping Method",
                     ),
                     orderPlaceDetailsAdmin(
-                      d1: DateTime.now(),
-                      // d1: intl.DateFormat()
-                      //     .add_yMd()
-                      //     .format((data['order_date'].toDate())),
-                      d2: "data['payment_method']",
+                      d1: intl.DateFormat()
+                          .add_yMd()
+                          .format((widget.data['order_date'].toDate())),
+                      d2: "${widget.data['payment_method']}",
                       title1: "Order Date",
                       title2: "Payment Method",
                     ),
@@ -107,12 +143,12 @@ class OrderDetailAdmin extends StatelessWidget {
                               //     .fontFamily(semibold)
                               //     .make(),
                               boldText(text: "Shipping Address", color: darkFontGrey),
-                              "{data['order_by_name']}".text.make(),
-                              "{data['order_by_email']}".text.make(),
-                              "{data['order_by_address']}".text.make(),
-                              "{data['order_by_city']}".text.make(),
-                              "{data['order_by_phone']}".text.make(),
-                              "{data['order_by_postalcode']}".text.make(),
+                              // "${widget.data['order_by_name']}".text.make(),
+                              // "${widget.data['order_by_email']}".text.make(),
+                              "${widget.data['order_by_address']}".text.make(),
+                              "${widget.data['order_by_city']}".text.make(),
+                              "${widget.data['order_by_phone']}".text.make(),
+                              "${widget.data['order_by_postalcode']}".text.make(),
                             ],
                           ),
                           SizedBox(
@@ -122,9 +158,9 @@ class OrderDetailAdmin extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 boldText(text: "Total Amount", color: darkFontGrey),
-                                boldText(text: "\$300", color: redColor, size: 16.0)
+                                boldText(text: "\$ ${widget.data['total_amount']}", color: redColor, size: 16.0)
                                 // "Total Amount".text.fontFamily(semibold).make(),
-                                // "${data['total_amount']}"
+                                // "${widget.data['total_amount']}"
                                 //     .text
                                 //     .color(redColor)
                                 //     .fontFamily(bold)
@@ -144,14 +180,14 @@ class OrderDetailAdmin extends StatelessWidget {
                 ListView(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  children: List.generate(3, (index) {
+                  children: List.generate(controller.orders.length, (index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         orderPlaceDetailsAdmin(
-                          title1: "data['orders'][index]['title']",
-                          title2: "data['orders'][index]['tprice']",
-                          d1: "{data['orders'][index]['qty']}x",
+                          title1: "${controller.orders[index]['title']}",
+                          title2: "${controller.orders[index]['tprice']}",
+                          d1: "${controller.orders[index]['qty']}x",
                           d2: "Refundable",
                         ),
                         Padding(
@@ -175,4 +211,8 @@ class OrderDetailAdmin extends StatelessWidget {
       ),
     );
   }
+
 }
+  
+  
+  

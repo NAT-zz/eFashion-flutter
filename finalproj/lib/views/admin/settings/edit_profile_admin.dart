@@ -57,19 +57,19 @@ class EditProfileAdminScreen extends StatelessWidget {
                         title: "Change"),
                     const Divider(),
                     20.heightBox,
-                    customTextField(
+                    customTextFieldAdmin(
                         controller: controller.nameController,
-                        hint: controller.snapshotData['password'],
+                        hint: "eg. Chi",
                         title: name,
                         isPass: false),
                     10.heightBox,
-                    customTextField(
+                    customTextFieldAdmin(
                         controller: controller.oldpasswordController,
                         hint: passwordHint,
                         title: oldpass,
                         isPass: true),
                     10.heightBox,
-                    customTextField(
+                    customTextFieldAdmin(
                         controller: controller.newpasswordController,
                         hint: passwordHint,
                         title: newpass,

@@ -1,8 +1,11 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finalproj/controllers/admin/order_admin_controller.dart';
 import 'package:finalproj/views/admin/orders/order_admin_detail.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/consts.dart';
+import '../../../services/firestore_service.dart';
+import '../../../widgets_common/loading_indicator.dart';
 import '../../../widgets_common/text_style.dart';
 import '../Components/appbar_widget.dart';
 import 'package:intl/intl.dart' as intl;
@@ -12,52 +15,113 @@ class Orders_Admin_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(OrderController());
     // TODO: implement build
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
-        ),
+      ),
       appBar: appbarWiget(aorders),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-              children: List.generate(20, (index) => ListTile(
-                onTap: () {
-                  Get.to(() => const OrderDetailAdmin());
-                },
-                tileColor: textfieldGrey,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),
-                leading: Image.asset(imgB1, width: 100, height: 100, fit: BoxFit.cover),
-                title: boldText(text: "OrderID", color: redColor),
-                subtitle: Column(
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(Icons.calendar_month, color: fontGrey),
-                        10.widthBox,
-                        boldText(text: intl.DateFormat().add_yMd().format(DateTime.now()), color: fontGrey),
+      body: StreamBuilder(
+          stream: FirestoreServices.getOrdersByVendor(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: loadingIndicator(),
+              );
+            } else {
+              var data = snapshot.data!.docs;
+              
+              return SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: List.generate(
+                      data.length,
+                      (index) { 
+                        var time = data[index]['order_date'].toDate();
+                        print(data[index]['orders']);
+                        return ListTile(
+                            onTap: () {
+                              Get.to(() => OrderDetailAdmin(data: data[index]));
+                            },
+                            tileColor: textfieldGrey,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            leading: Image.asset(imgB1,
+                                width: 100, height: 100, fit: BoxFit.cover),
+                            title: boldText(text: "${data[index]['order_code']}", color: redColor),
+                            subtitle: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.calendar_month,
+                                        color: fontGrey),
+                                    10.widthBox,
+                                    boldText(
+                                        text: intl.DateFormat()
+                                            .add_yMd()
+                                            .format(time),
+                                        color: fontGrey),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.payment, color: fontGrey),
+                                    10.widthBox,
+                                    boldText(text: unpaid, color: redColor),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            trailing:
+                                boldText(text: "\$ ${data[index]['total_amount']}", color: darkFontGrey),
+                          );}),
+                ),
+              );
+            }
+          }),
+      // body: Padding(
+      //   padding: const EdgeInsets.all(8.0),
+      //   child: SingleChildScrollView(
+      //     physics: const BouncingScrollPhysics(),
+      //     child: Column(
+      //         children: List.generate(20, (index) => ListTile(
+      //           onTap: () {
+      //             Get.to(() => const OrderDetailAdmin());
+      //           },
+      //           tileColor: textfieldGrey,
+      //           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),
+      //           leading: Image.asset(imgB1, width: 100, height: 100, fit: BoxFit.cover),
+      //           title: boldText(text: "OrderID", color: redColor),
+      //           subtitle: Column(
+      //             children: [
+      //               Row(
+      //                 children: [
+      //                   const Icon(Icons.calendar_month, color: fontGrey),
+      //                   10.widthBox,
+      //                   boldText(text: intl.DateFormat().add_yMd().format(DateTime.now()), color: fontGrey),
 
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Icon(Icons.payment, color: fontGrey),
-                        10.widthBox,
-                        boldText(text: unpaid, color:redColor),
+      //                 ],
+      //               ),
+      //               Row(
+      //                 children: [
+      //                   const Icon(Icons.payment, color: fontGrey),
+      //                   10.widthBox,
+      //                   boldText(text: unpaid, color:redColor),
 
-                      ],
-                    ),
-                  ],
-                  ),
-                  trailing: boldText(text: "\$40", color: darkFontGrey),
-              )
-              ),
-            ),
-        ) 
-        ),
+      //                 ],
+      //               ),
+      //             ],
+      //             ),
+      //             trailing: boldText(text: "\$40", color: darkFontGrey),
+      //         )
+      //         ),
+      //       ),
+      //   )
+      //   ),
     );
   }
 }

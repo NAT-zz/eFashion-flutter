@@ -1,4 +1,5 @@
 import 'package:finalproj/consts/consts.dart';
+import 'package:finalproj/widgets_common/text_style.dart';
 
 Widget customTextField({String? title, String? hint, controller, isPass = false}) {
   return Column(
@@ -29,4 +30,36 @@ Widget customTextField({String? title, String? hint, controller, isPass = false}
       5.heightBox,
     ],
   );
+}
+
+
+Widget customTextFieldAdmin({String? title, String? hint, controller, isPass = false, isDesc = false}) {
+  return 
+      TextFormField(
+        maxLines: isDesc ? 4 : 1,
+        obscureText: isPass,
+        controller: controller,
+        decoration: InputDecoration(
+          hintStyle: const TextStyle(
+            fontFamily: semibold,
+            color: textfieldGrey,
+          ),
+          hintText: hint,
+          isDense: true,
+          fillColor: lightGrey,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: whiteColor,
+            )
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: whiteColor,
+            ),
+          ),
+        )
+      );
 }

@@ -61,6 +61,13 @@ class FirestoreServices {
         .snapshots();
   }
 
+  static getOrdersByVendor() {
+    return firestore
+        .collection(ordersCollection)
+        .where('vendors', arrayContains: currentUser!.uid)
+        .snapshots();
+  }
+
   static getWishLists() {
     return firestore
         .collection(productsCollection)
@@ -72,6 +79,13 @@ class FirestoreServices {
     return firestore
         .collection(chatsCollection)
         .where('fromId', isEqualTo: currentUser!.uid)
+        .snapshots();
+  }
+
+    static getAllAdminMessages() {
+    return firestore
+        .collection(chatsCollection)
+        .where('toId', isEqualTo: currentUser!.uid)
         .snapshots();
   }
 
