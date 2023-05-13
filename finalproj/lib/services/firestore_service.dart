@@ -120,6 +120,10 @@ class FirestoreServices {
     return firestore.collection(productsCollection).snapshots();
   }
 
+  static getProductsByVendor(uid) {
+    return firestore.collection(productsCollection).where('vendor_id', isEqualTo: uid).snapshots();
+  }
+
   // get featured product
   static getFeaturedProducts() {
     return firestore

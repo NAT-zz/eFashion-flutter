@@ -1,3 +1,4 @@
+import 'package:finalproj/controllers/admin/product_admin_controller.dart';
 import 'package:finalproj/views/profile_screen/edit_profile.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
@@ -15,6 +16,7 @@ class AddProduct extends StatelessWidget {
   const AddProduct({super.key});
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<ProductAdminController>();
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
@@ -31,40 +33,50 @@ class AddProduct extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(8),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              customTextField(
+              customTextFieldAdmin(
                 hint: "eg. Nike",
-                title: "Product name"
+                title: "Product name",
+                controller: controller.nameController,
               ),
               10.heightBox,
-              customTextField(
+              customTextFieldAdmin(
+                
                 hint: "eg. Good product",
-                title: "Description"
+                title: "Description",
+                controller: controller.descController,
+                isDesc: true,               
               ),
               10.heightBox,
-              customTextField(
+              customTextFieldAdmin(
                 hint: "eg. 100",
-                title: "Price"
+                title: "Price",
+                controller: controller.priceController,
               ),
               10.heightBox,
-              customTextField(
+              customTextFieldAdmin(
                 hint: "eg. 10",
-                title: "Quantity"
+                title: "Quantity",
+                controller: controller.quantityController,
               ),
               10.heightBox,
-              ProductDropdown(),
+              productDropdown("Category", controller.categoryList, controller.categoryValue, controller),
               10.heightBox,
-              ProductDropdown(),
+              productDropdown("Subcategory", controller.subcategoryList, controller.subcategoryValue, controller),
               10.heightBox,
               const Divider(color: whiteColor),
               boldText(text: "Choose product images"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(
-                  3, (index) => ProductImage(label: "${index + 1}"),
+                  3, (index) => controller.imageList[index] != null 
+                  ? Image.file(controller.imageList[index], width: 100,)
+                  : ProductImage(label: "${index + 1}").onTap(() {
+                    controller.pickImage(index, context);
+                  }),
                 )
               ),
               5.heightBox,
@@ -73,19 +85,23 @@ class AddProduct extends StatelessWidget {
               10.heightBox,
               boldText(text: "Choose product images"),
               10.heightBox,
-              Wrap(
+              Obx(() => Wrap(
                 spacing: 8.0,
                 runSpacing: 8.0,
                 children: List.generate(
                   9, (index) => Stack(
                     alignment: Alignment.center,
                     children: [
-                      VxBox().color(Vx.randomPrimaryColor).roundedFull.size(70, 70).make(),
-                      const Icon(Icons.done, color: whiteColor),
+                      VxBox().color(Vx.randomPrimaryColor).roundedFull.size(65, 65).make().onTap(() {
+                        controller.selectedColorIndex.value = index;
+                      }),
+                      controller.selectedColorIndex.value == index 
+                      ? const Icon(Icons.done, color: whiteColor) 
+                      : const SizedBox(),
                     ]
                   ),
                 )
-              ),
+              )),
 
 
             ],

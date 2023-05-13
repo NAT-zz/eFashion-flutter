@@ -41,7 +41,6 @@ class Orders_Admin_Screen extends StatelessWidget {
                       data.length,
                       (index) { 
                         var time = data[index]['order_date'].toDate();
-                        print(data[index]['orders']);
                         return ListTile(
                             onTap: () {
                               Get.to(() => OrderDetailAdmin(data: data[index]));

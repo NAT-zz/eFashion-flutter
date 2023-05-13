@@ -10,7 +10,8 @@ import '../../../consts/lists.dart';
 
 
 class ProductDetailAdmin extends StatelessWidget {
-  const ProductDetailAdmin({Key? key}) : super(key: key);
+  final dynamic data;
+  const ProductDetailAdmin({super.key, this.data});
 
 
   @override

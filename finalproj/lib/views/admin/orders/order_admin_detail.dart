@@ -25,18 +25,19 @@ class _OrderDetailAdminState extends State<OrderDetailAdmin> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // controller.orders = controller.getOrders(widget.data);
-    controller.orders = widget.data['orders'][0];
-    print(widget.data['orders'][0]);
-    controller.confirmed = widget.data['order_confirmed'];
-    controller.onDelivery = widget.data['order_on_delivery'];
-    controller.delivered = widget.data['order_delivered'];
-    print(widget.data);
+    print(widget.data.id);
+    controller.getOrders(widget.data);
+    // controller.orders = widget.data['orders'][0];
+    controller.confirmed.value = widget.data['order_confirmed'];
+    controller.onDelivery.value = widget.data['order_on_delivery'];
+    controller.delivered.value = widget.data['order_delivered'];
+    
   }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
+    return Obx(() =>
+      Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: darkFontGrey),
@@ -80,8 +81,9 @@ class _OrderDetailAdminState extends State<OrderDetailAdmin> {
                     ),
                     SwitchListTile(
                       activeColor: Colors.green,
-                      value: true,
-                      onChanged: (value) {},
+                      value: controller.confirmed.value,
+                      onChanged: (value) {
+                      },
                       title: boldText(text: "Confirmed", color: fontGrey),
                     ),
                     SwitchListTile(
@@ -95,9 +97,9 @@ class _OrderDetailAdminState extends State<OrderDetailAdmin> {
                     ),
                     SwitchListTile(
                       activeColor: Colors.green,
-                      value: controller.onDelivery.value,
+                      value: controller.delivered.value,
                       onChanged: (value) {
-                        controller.onDelivery.value = value;
+                        controller.delivered.value = value;
                         controller.changeStatus(title: "order_delivered", status: value, docID: widget.data.id);
                       },
                       title: boldText(text: "Delivered", color: fontGrey),
@@ -209,7 +211,7 @@ class _OrderDetailAdminState extends State<OrderDetailAdmin> {
             ),
           ),
       ),
-    );
+    ));
   }
 
 }
