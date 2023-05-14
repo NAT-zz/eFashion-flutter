@@ -1,6 +1,7 @@
 import 'package:finalproj/controllers/admin/product_admin_controller.dart';
 import 'package:finalproj/views/profile_screen/edit_profile.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';
+import 'package:finalproj/widgets_common/loading_indicator.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
 import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,8 @@ class AddProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.find<ProductAdminController>();
-    return Scaffold(
+    return Obx(()=>
+    Scaffold(
       appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: darkFontGrey),
@@ -27,7 +29,13 @@ class AddProduct extends StatelessWidget {
           ),
           title: boldText(text: "Add Product", size: 16.0, color: fontGrey),
           actions: [
-            TextButton(onPressed: () {}, child: boldText(text: "Save", color: darkFontGrey)),
+            controller.isLoading.value ? loadingIndicator() :
+            TextButton(onPressed: () async {
+              controller.isLoading(true);
+              await controller.uploadImages();
+              await controller.uploadProduct(context);
+              Get.back();
+            }, child: boldText(text: "Save", color: darkFontGrey)),
           ],
         ),
         body: Padding(
@@ -73,7 +81,9 @@ class AddProduct extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(
                   3, (index) => controller.imageList[index] != null 
-                  ? Image.file(controller.imageList[index], width: 100,)
+                  ? Image.file(controller.imageList[index], width: 100,).onTap(() {
+                    controller.pickImage(index, context);
+                  })
                   : ProductImage(label: "${index + 1}").onTap(() {
                     controller.pickImage(index, context);
                   }),
@@ -108,6 +118,6 @@ class AddProduct extends StatelessWidget {
           ),
           ),
         ),
-    );
+    ));
   }
 }

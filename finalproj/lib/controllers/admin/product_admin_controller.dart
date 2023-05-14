@@ -2,13 +2,17 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/consts.dart';
+import 'package:finalproj/controllers/admin/home_admin_contronller.dart';
 import 'package:finalproj/models/category_model.dart';
 import 'package:finalproj/services/firestore_service.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class ProductAdminController extends GetxController {
+  var isLoading = false.obs;
   var nameController = TextEditingController();
   var priceController = TextEditingController();
   var quantityController = TextEditingController();
@@ -17,7 +21,8 @@ class ProductAdminController extends GetxController {
   var categoryList = <String>[].obs;
   var subcategoryList = <String>[].obs;
 
-  List <Category> categories = [];
+  List<Category> categories = [];
+  var imageLinks = [];
   var imageList = RxList<dynamic>.generate(3, (index) => null);
   var categoryValue = ''.obs;
   var subcategoryValue = ''.obs;
@@ -45,9 +50,10 @@ class ProductAdminController extends GetxController {
     }
   }
 
-  pickImage (index, context) async {
+  pickImage(index, context) async {
     try {
-      final img = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 80);
+      final img = await ImagePicker()
+          .pickImage(source: ImageSource.gallery, imageQuality: 80);
       if (img == null) {
         return;
       } else {
@@ -56,6 +62,47 @@ class ProductAdminController extends GetxController {
     } catch (e) {
       VxToast.show(context, msg: e.toString());
     }
+  }
+
+  uploadImages() async {
+    imageLinks.clear();
+    for (var item in imageList) {
+      if (item != null) {
+        var filename = basename(item.path);
+        var destination = 'images/vendors/${currentUser!.uid}/$filename';
+        Reference ref = FirebaseStorage.instance.ref().child(destination);
+        await ref.putFile(item);
+        var n = await ref.getDownloadURL();
+        imageLinks.add(n);
+      }
+    }
+  }
+
+  uploadProduct(context) async {
+    var store = firestore.collection(productsCollection).doc();
+    try {
+      await store.set({
+      'is_featured': false,
+      'p_category': categoryValue,
+      'p_subcategory' : subcategoryValue,
+      'p_colors': FieldValue.arrayUnion([Colors.red.value, Colors.brown.value]),
+      'p_images': FieldValue.arrayUnion(imageLinks),
+      'p_wishlist': FieldValue.arrayUnion([]),
+      'p_desc': descController,
+      'p_name': nameController,
+      'p_price': priceController,
+      'p_quantity': quantityController,
+      'p_seller': Get.find<HomeAdminController>().username,
+      'p_rating': "5.0",
+      'vendor_id': currentUser!.uid,
+      'featured_id': '',
+    });
+    isLoading(false);
+    VxToast.show(context, msg: 'Product uploaded');
+    } catch (e) {
+      VxToast.show(context, msg: e.toString());
+    }
+    
 
   }
 
