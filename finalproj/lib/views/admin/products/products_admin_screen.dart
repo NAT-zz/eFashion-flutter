@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 
 import '../../../consts/consts.dart';
 import 'package:intl/intl.dart' as intl;
-
 import '../../../services/firestore_service.dart';
 import '../../../widgets_common/loading_indicator.dart';
 import '../../../widgets_common/text_style.dart';
@@ -49,7 +48,7 @@ class Products_Admin_Screen extends StatelessWidget {
                         data.length,
                         (index) => ListTile(
                               onTap: () {
-                                Get.to(() => const ProductDetailAdmin());
+                                Get.to(() => ProductDetailAdmin(data: data[index],));
                               },
                               leading: Image.network(data[index]['p_imgs'][0],
                                   width: 100, height: 100, fit: BoxFit.cover),
@@ -64,29 +63,49 @@ class Products_Admin_Screen extends StatelessWidget {
                                 ],
                               ),
                               trailing: VxPopupMenu(
-                                child: Icon(Icons.more_vert_rounded),
                                 arrowSize: 0.0,
                                 menuBuilder: () => Column(
                                   children: List.generate(
                                       popupMenuTitles.length,
-                                      (index) => Padding(
+                                      (i) => Padding(
                                             padding: const EdgeInsets.all(12.0),
                                             child: Row(
                                               children: [
-                                                Icon(popupMenuIcons[index]),
-                                                5.widthBox,
+                                                Icon(
+                                                  popupMenuIcons[i],
+                                                  color: data[index]['featured_id'] == currentUser!.uid && i == 0 ? Colors.green : darkFontGrey,
+                                                ),                                               
+                                                10.widthBox,
                                                 normalText(
-                                                    text:
-                                                        popupMenuTitles[index],
+                                                    text: data[index]['featured_id'] == currentUser!.uid && i == 0 ?
+                                                      'Remove feature'
+                                                      : popupMenuTitles[i],
                                                     color: darkFontGrey)
                                               ],
                                             ).onTap(() {
-                                              Get.to(() =>
-                                                  const ProductDetailAdmin());
+                                              switch (i) {
+                                                case 0:
+                                                  if (data[index]['is_featured'] == true) {
+                                                    controller.removeFeature(data[index].id);
+                                                    VxToast.show(context, msg: "Removed");
+                                                  } else {
+                                                    controller.addFeature(data[index].id);
+                                                    VxToast.show(context, msg: "Added");
+                                                  }
+                                                  break;
+                                                case 1:
+                                                  break;
+                                                case 2: 
+                                                  controller.removeFeature(data[index].id);
+                                                  VxToast.show(context, msg: "Removed");
+                                                  break;
+                                                default:
+                                              }
                                             }),
                                           )),
                                 ).box.white.width(200).make(),
                                 clickType: VxClickType.singleClick,
+                                child: const Icon(Icons.more_vert_rounded),
                               ),
                             )),
                   ),

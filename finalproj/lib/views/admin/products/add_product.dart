@@ -22,7 +22,7 @@ class AddProduct extends StatelessWidget {
     Scaffold(
       appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: darkFontGrey),
+            icon: const Icon(Icons.arrow_back, color: darkFontGrey),
             onPressed: () {
               Get.back();
             },

@@ -83,15 +83,15 @@ class ProductAdminController extends GetxController {
     try {
       await store.set({
       'is_featured': false,
-      'p_category': categoryValue,
-      'p_subcategory' : subcategoryValue,
+      'p_category': categoryValue.value,
+      'p_subcategory' : subcategoryValue.value,
       'p_colors': FieldValue.arrayUnion([Colors.red.value, Colors.brown.value]),
       'p_images': FieldValue.arrayUnion(imageLinks),
       'p_wishlist': FieldValue.arrayUnion([]),
-      'p_desc': descController,
-      'p_name': nameController,
-      'p_price': priceController,
-      'p_quantity': quantityController,
+      'p_desc': descController.text,
+      'p_name': nameController.text,
+      'p_price': priceController.text,
+      'p_quantity': quantityController.text,
       'p_seller': Get.find<HomeAdminController>().username,
       'p_rating': "5.0",
       'vendor_id': currentUser!.uid,
@@ -101,9 +101,28 @@ class ProductAdminController extends GetxController {
     VxToast.show(context, msg: 'Product uploaded');
     } catch (e) {
       VxToast.show(context, msg: e.toString());
+      print(e.toString());
     }
-    
+  }
 
+  addFeature(docId) async {
+    var store = firestore.collection(productsCollection).doc(docId);
+    await store.set({
+      'featured_id': currentUser!.uid,
+      'is_featured': true,
+    } , SetOptions(merge: true));
+  }
+
+  removeFeature(docId) async {
+    var store = firestore.collection(productsCollection).doc(docId);
+    await store.set({
+      'featured_id': '',
+      'is_featured': false,
+    } , SetOptions(merge: true));
+  }
+
+  removeProduct(docId) async {
+    await firestore.collection(productsCollection).doc(docId).delete();
   }
 
   // changeColorIndex(index) {

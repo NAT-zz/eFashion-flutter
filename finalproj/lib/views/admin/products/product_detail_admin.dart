@@ -12,14 +12,12 @@ import '../../../consts/lists.dart';
 class ProductDetailAdmin extends StatelessWidget {
   final dynamic data;
   const ProductDetailAdmin({super.key, this.data});
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: darkFontGrey),
+            icon: const Icon(Icons.arrow_back, color: darkFontGrey),
             onPressed: () {
               Get.back();
             },
@@ -54,20 +52,20 @@ class ProductDetailAdmin extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                boldText(text: "Product title", color: fontGrey, size: 16.0),
+                boldText(text: "${data['p_name']}", color: fontGrey, size: 16.0),
                 10.heightBox,
                 Row(
                   children: [
-                    boldText(text: "Category", color: fontGrey, size: 16.0),
+                    boldText(text: "${data['p_category']}", color: fontGrey, size: 16.0),
                     10.widthBox,
-                    normalText(text: "Subcategory", color: fontGrey, size: 16.0),
+                    normalText(text: "${data['p_subcategory']}", color: fontGrey, size: 16.0),
                   ],
                 ),
                 10.heightBox,
                 //rating
                 VxRating(
                   isSelectable: false,
-                  value: 3.0,
+                  value: double.parse(data['p_rating']),
                   // value: double.parse(data['p_rating']),
                   onRatingUpdate: (value) {},
                   normalColor: textfieldGrey,
@@ -77,7 +75,7 @@ class ProductDetailAdmin extends StatelessWidget {
                   maxRating: 5,
                 ),
                 10.heightBox,
-                boldText(text: "Price", color: redColor, size: 18.0),
+                boldText(text: "${data['p_price']}", color: redColor, size: 18.0),
                 // "${data['p_price']}"
                 //     .numCurrency
                 //     .text
@@ -99,13 +97,12 @@ class ProductDetailAdmin extends StatelessWidget {
                         ),
                         Row(
                           children: List.generate(
-                              3,
+                              data['p_colors'].length,
                               (index) =>
                                       VxBox()
                                           .size(40, 40)
                                           .roundedFull
-                                          .color(Vx.randomPrimaryColor
-                                              .withOpacity(1.0))
+                                          .color(Color(data['p_colors'][index]))
                                           .margin(const EdgeInsets.symmetric(
                                               horizontal: 4))
                                           .make()
@@ -125,7 +122,7 @@ class ProductDetailAdmin extends StatelessWidget {
                           child: normalText(text: "Quantity", color: fontGrey)
                           // child: "Quantity: ".text.color(textfieldGrey).make(),
                         ),
-                        normalText(text: "20 items", color: fontGrey),
+                        normalText(text: "${data['p_quantity']} items", color: fontGrey),
                        
                       ],
                     ),
@@ -135,7 +132,7 @@ class ProductDetailAdmin extends StatelessWidget {
                 20.heightBox,
                 boldText(text: "Description", color: fontGrey),
                 10.heightBox,
-                normalText(text: "Description of this item", color: fontGrey)
+                normalText(text: "${data['p_desc']}", color: fontGrey)
               ],
             ),
           ),
