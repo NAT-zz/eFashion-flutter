@@ -31,11 +31,11 @@ class ProductDetailAdmin extends StatelessWidget {
               autoPlay: true,
               height: 350,
               aspectRatio: 16 / 9,
-              itemCount: 3,
+              itemCount: data['p_imgs'].length,
               viewportFraction: 1.0,
               itemBuilder: (context, index) {
                 return Image.network(
-                  imgB3,
+                  data['p_imgs'][index],
                   width: double.infinity,
                   fit: BoxFit.cover,
                 );
@@ -112,7 +112,7 @@ class ProductDetailAdmin extends StatelessWidget {
                                     ),
                         )
                       ],
-                    ).box.padding(const EdgeInsets.all(8)).make(),
+                    ).box.white.make(),
                     10.heightBox,
                     // quantity row
                     Row(
@@ -127,7 +127,7 @@ class ProductDetailAdmin extends StatelessWidget {
                       ],
                     ),
                   ],
-                ).box.white.shadowSm.make(),
+                ).box.white.make(),
                 const Divider(),
                 20.heightBox,
                 boldText(text: "Description", color: fontGrey),

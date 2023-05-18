@@ -74,6 +74,8 @@ class ProductAdminController extends GetxController {
         await ref.putFile(item);
         var n = await ref.getDownloadURL();
         imageLinks.add(n);
+      } else {
+        imageLinks.add("https://res.cloudinary.com/natscloud/image/upload/v1672825091/csra7hesjtt4uuheblvr.png");
       }
     }
   }
@@ -86,7 +88,7 @@ class ProductAdminController extends GetxController {
       'p_category': categoryValue.value,
       'p_subcategory' : subcategoryValue.value,
       'p_colors': FieldValue.arrayUnion([Colors.red.value, Colors.brown.value]),
-      'p_images': FieldValue.arrayUnion(imageLinks),
+      'p_imgs': FieldValue.arrayUnion(imageLinks),
       'p_wishlist': FieldValue.arrayUnion([]),
       'p_desc': descController.text,
       'p_name': nameController.text,

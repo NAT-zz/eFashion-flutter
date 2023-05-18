@@ -45,6 +45,7 @@ Widget customTextFieldAdmin({String? title, String? hint, controller, isPass = f
             color: textfieldGrey,
           ),
           hintText: hint,
+          label: normalText(text: title, color: darkFontGrey),
           isDense: true,
           fillColor: lightGrey,
           filled: true,

@@ -10,11 +10,18 @@ import '../../../consts/lists.dart';
 import '../../../controllers/admin/profile_admin_controller.dart';
 
 class ShopSetting extends StatelessWidget {
-  const ShopSetting({Key? key}) : super(key: key);
+  final dynamic data;
+  const ShopSetting({super.key, this.data});
+
 
   @override
   Widget build(BuildContext context) {
     var controller = Get.find<ProfileAdminController>();
+        controller.shopNameController.text = data['shop_name'];
+        controller.shopAddressController.text = data['shop_address'];
+        controller.shopMobileController.text = data['shop_mobile'];
+        controller.shopWebsiteController.text = data['shop_website'];
+        controller.descriptionController.text = data['description'];
     // TODO: implement build
     return Scaffold(
       backgroundColor: whiteColor,

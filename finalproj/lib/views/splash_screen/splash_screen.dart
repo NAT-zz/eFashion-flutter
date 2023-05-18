@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/colors.dart';
 import 'package:finalproj/consts/consts.dart';
+import 'package:finalproj/controllers/admin/home_admin_contronller.dart';
+import 'package:finalproj/services/firestore_service.dart';
 import 'package:finalproj/views/admin/home/home_admin.dart';
 import 'package:finalproj/views/auth_screen/login_screen.dart';
 import 'package:finalproj/views/home_screen/home.dart';
@@ -30,7 +33,16 @@ class _SplashScreenState extends State<SplashScreen>{
         if(user == null && mounted){
           Get.to(() => const LoginScreen());
         }else{
-          Get.to(() => const Home_Admin());
+          var controller = Get.put(HomeAdminController());
+          print(user!.uid);
+          // late QueryDocumentSnapshot snapshotData = FirestoreServices.getUser(currentUser!.uid);
+          print(controller.getUsername());
+          if (FirestoreServices.getUser(currentUser!.uid) != null) {
+            Get.to(() => const Home_Admin());
+          } else {
+            Get.to(() => const Home());
+          }
+          
         }
        });
     });

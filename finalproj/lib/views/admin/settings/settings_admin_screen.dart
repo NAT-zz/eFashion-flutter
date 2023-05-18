@@ -8,7 +8,9 @@ import 'package:get/get.dart';
 import '../../../consts/consts.dart';
 import '../../../consts/lists.dart';
 import '../../../controllers/admin/profile_admin_controller.dart';
+import '../../../controllers/auth_controller.dart';
 import '../../../services/firestore_service.dart';
+import '../../auth_screen/login_screen.dart';
 import 'edit_profile_admin.dart';
 
 class Setting_Admin_Screen extends StatelessWidget {
@@ -26,13 +28,18 @@ class Setting_Admin_Screen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(() => const EditProfileAdminScreen());
+                Get.to(() => EditProfileAdminScreen(username: controller.snapshotData['vendor_name']));
               },
               icon: const Icon(
                 Icons.edit,
                 color: whiteColor,
               )),
-          TextButton(onPressed: () {}, child: normalText(text: "Logout"))
+          TextButton(onPressed: () async {
+            VxToast.show(context, msg: loggedOut);
+                                    await Get.put(AuthController())
+                                        .signoutMethod(context);
+                                    Get.offAll(() => const LoginScreen());
+          }, child: normalText(text: "Logout"))
         ],
       ),
       body: StreamBuilder(
@@ -68,7 +75,7 @@ class Setting_Admin_Screen extends StatelessWidget {
                                 onTap: () {
                                   switch (index) {
                                     case 0:
-                                      Get.to(() => const ShopSetting());
+                                      Get.to(() => ShopSetting(data: controller.snapshotData,));
                                       break;
                                     case 1:
                                       Get.to(() => const MessageScreen());

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/lists.dart';
 import 'package:finalproj/controllers/admin/product_admin_controller.dart';
 import 'package:finalproj/views/admin/products/add_product.dart';
+import 'package:finalproj/views/admin/products/edit_product.dart';
 import 'package:finalproj/views/admin/products/product_detail_admin.dart';
 import 'package:get/get.dart';
 
@@ -94,9 +95,10 @@ class Products_Admin_Screen extends StatelessWidget {
                                                   }
                                                   break;
                                                 case 1:
+                                                  Get.to(() => EditProduct(data: data[index]));
                                                   break;
                                                 case 2: 
-                                                  controller.removeFeature(data[index].id);
+                                                  controller.removeProduct(data[index].id);
                                                   VxToast.show(context, msg: "Removed");
                                                   break;
                                                 default:

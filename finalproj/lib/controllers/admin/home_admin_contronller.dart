@@ -16,8 +16,7 @@ class HomeAdminController extends GetxController {
       if (value.docs.isNotEmpty) {
         return value.docs.single['vendor_name'];
       }
+      return null;
     });
-    username = n;
-    print(username);
   }
 }

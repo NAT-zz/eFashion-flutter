@@ -18,6 +18,7 @@ class EditProfileAdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.find<ProfileAdminController>();
+    controller.nameController.text = username!;
     // var controller = Get.put(ProfileAdminController);
 
     return bgWidget(

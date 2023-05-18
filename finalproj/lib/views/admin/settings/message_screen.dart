@@ -22,7 +22,7 @@ class MessageScreen extends StatelessWidget {
        title: boldText(text: "Messages", size: 16.0, color: fontGrey),
       ),
       body: StreamBuilder(
-            stream: FirestoreServices.getAllMessages(),
+            stream: FirestoreServices.getAllAdminMessages(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
