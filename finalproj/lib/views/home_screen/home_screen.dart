@@ -153,11 +153,12 @@ class HomeScreen extends StatelessWidget {
                                             title: featuredTitles1[index]),
                                         10.heightBox,
                                         featuredButton(
-                                            icon: featuredImages2[index],
-                                            title: featuredTitles2[index]),
+                                            icon: index < 2 ? featuredImages2[index] : featuredImages1[0],
+                                            title: index < 2 ? featuredTitles2[index] : featuredTitles1[0]),
                                       ],
                                     )).toList(),
-                          )),
+                          ),
+                      ),
 
                       // featured product
                       20.heightBox,

@@ -64,11 +64,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     hint: retypePassword,
                     controller: passwordRetypeController,
                     isPass: true),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () {}, child: forgetPassword.text.make()),
-                ),
                 5.heightBox,
                 Row(
                   children: [

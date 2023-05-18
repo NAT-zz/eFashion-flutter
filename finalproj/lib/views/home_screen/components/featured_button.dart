@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 Widget featuredButton({String? title, icon}) {
     return Row(children: [
-      Image.asset(icon, width: 60, fit: BoxFit.fill),
+      Image.asset(icon, width: 60, height: 50, fit: BoxFit.fill),
       10.widthBox,
       title!.text.fontFamily(semibold).color(darkFontGrey).make(),
     ],

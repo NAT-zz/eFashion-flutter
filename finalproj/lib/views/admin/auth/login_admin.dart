@@ -65,11 +65,6 @@ class LoginAdminScreen extends StatelessWidget {
                     hint: passwordHint,
                     isPass: true,
                     controller: controller.passwordController),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () {}, child: forgetPassword.text.make()),
-                ),
                 5.heightBox,
                 controller.isLoading.value ? const CircularProgressIndicator( 
                   valueColor: AlwaysStoppedAnimation(redColor),

@@ -112,6 +112,11 @@ const imgS6 = "assets/images/s6.jpg";
 const imgS7 = "assets/images/s7.jpg";
 const imgS8 = "assets/images/s8.jpg";
 const imgS9 = "assets/images/s9.jpg";
+
+const imgKidFashionIcon = "assets/images/kid_fashion_icon.webp";
+const imgAcessoriesIcon = "assets/images/accessories_icon.jpg";
+const imgSportIcon = "assets/images/sport_icon.jpg";
+
 const imgS10 = "assets/images/s10.jpg";
 const imgS11 = "assets/images/s11.jpg";
 const imgS12 = "assets/images/s12.jpg";
@@ -120,10 +125,16 @@ const imgSs2 = "assets/images/ss2.jpg";
 const imgSs3 = "assets/images/ss3.jpg";
 const imgSs4 = "assets/images/ss4.jpg";
 const imgSave = "assets/images/save.png";
+
 const imgSlider1 = "assets/images/slider_1.png";
 const imgSlider2 = "assets/images/slider_2.png";
 const imgSlider3 = "assets/images/slider_3.png";
 const imgSlider4 = "assets/images/slider_4.png";
+const imgSlider5 = "assets/images/slider5.webp";
+const imgSlider6 = "assets/images/slider6.webp";
+
+
+
 const imgSslcommerz = "assets/images/sslcommerz.png";
 const imgStripe = "assets/images/stripe.png";
 const imgTwocheckout = "assets/images/twocheckout.png";

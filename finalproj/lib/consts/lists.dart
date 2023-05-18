@@ -7,29 +7,33 @@ const socialIconList = [
 ];
 
 const slidersList = [imgSlider2, imgSlider3, imgSlider2, imgSlider3];
-const secondSlidersList = [imgSlider2, imgSlider3, imgSlider2, imgSlider3];
+const secondSlidersList = [imgSlider5, imgSlider6, imgSlider5, imgSlider6];
 
-const featuredImages1 = [imgS1, imgS2, imgS9];
-const featuredImages2 = [imgS4, imgS10, imgS11];
+const featuredImages1 = [imgS1, imgFc1, imgKidFashionIcon];
+const featuredImages2 = [imgAcessoriesIcon, imgSportIcon];
 
-const featuredTitles1 = [womenDress, girlsDress, girlsWatches];
-const featuredTitles2 = [boysGlasses, mobilePhone, tShirts];
-
-const categoriesList = [
-  womenDress,
-  menClothingFashion,
+const featuredTitles1 = [
+  womenClothing,
+  menClothing,
   kidClothing,
 ];
+
+const featuredTitles2 = [accessories, sportClothing];
+
+const categoriesList = [
+  womenClothing,
+  menClothing,
+  kidClothing,
+  accessories,
+  sportClothing
+];
+
 const categoriesImages = [
+  imgS1,
   imgFc1,
-  imgFc1,
-  imgFc1,
-  imgFc1,
-  imgFc1,
-  imgFc1,
-  imgFc1,
-  imgFc1,
-  imgFc1
+  imgKidFashionIcon,
+  imgAcessoriesIcon,
+  imgSportIcon,
 ];
 
 const itemDetailButtonsList = [
@@ -50,5 +54,5 @@ const paymentMethods = [paypal, cod];
 const popupMenuTitles = [featured, edit, remove];
 const popupMenuIcons = [Icons.featured_play_list, Icons.edit, Icons.delete];
 
-const profileButtonTitles = ["Shop setting",message];
+const profileButtonTitles = ["Shop setting", message];
 const profileButtonIcons = [Icons.settings, Icons.chat];

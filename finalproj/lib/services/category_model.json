@@ -1,26 +1,42 @@
 {
     "categories": [
         {
-            "name": "Women Dress",
+            "name": "Women Fashion",
             "subcategory": [
-                "Wedding & Event",
-                "Tops & Sets",
-                "Watches"
+                "Dress",
+                "Indoor Clothes",
+                "Office Clothes"
             ]
         },
         {
-            "name": "Men Clothing & Fashion",
+            "name": "Men Fashion",
             "subcategory": [
                 "Outwear & Jackets",
-                "Formal Dress",
-                "Accessories"
+                "T-Shirts",
+                "Pants"
             ]
         },
         {
-            "name": "Kid Clothing",
+            "name": "Kid Fashion",
             "subcategory": [
                 "Indoor Fashion",
                 "Outdoor Fashion"
+            ]
+        },
+        {
+            "name": "Accessories",
+            "subcategory": [
+                "Hats",
+                "Glasses",
+                "Watches",
+                "Shoes"
+            ]
+        },
+        {
+            "name": "Sport Wears",
+            "subcategory": [
+                "Women",
+                "Men"
             ]
         }
     ]
