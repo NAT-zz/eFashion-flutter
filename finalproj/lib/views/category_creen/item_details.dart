@@ -278,47 +278,47 @@ class ItemDetails extends StatelessWidget {
                     20.heightBox,
 
                     //products you may like section
-                    productYouMayAlsoLike.text
-                        .fontFamily(bold)
-                        .size(16)
-                        .color(darkFontGrey)
-                        .make(),
-                    10.heightBox,
+                    // productYouMayAlsoLike.text
+                    //     .fontFamily(bold)
+                    //     .size(16)
+                    //     .color(darkFontGrey)
+                    //     .make(),
+                    // 10.heightBox,
 
-                    SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                              6,
-                              (index) => Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.asset(imgFc1,
-                                          width: 150, fit: BoxFit.cover),
-                                      10.heightBox,
-                                      "Comple"
-                                          .text
-                                          .fontFamily(semibold)
-                                          .color(darkFontGrey)
-                                          .make(),
-                                      10.heightBox,
-                                      "\$600"
-                                          .text
-                                          .color(redColor)
-                                          .fontFamily(bold)
-                                          .size(16)
-                                          .make(),
-                                    ],
-                                  )
-                                      .box
-                                      .white
-                                      .margin(const EdgeInsets.symmetric(
-                                          horizontal: 4))
-                                      .roundedSM
-                                      .padding(const EdgeInsets.all(8))
-                                      .make()),
-                        )),
+                    // SingleChildScrollView(
+                    //     scrollDirection: Axis.horizontal,
+                    //     child: Row(
+                    //       children: List.generate(
+                    //           6,
+                    //           (index) => Column(
+                    //                 crossAxisAlignment:
+                    //                     CrossAxisAlignment.start,
+                    //                 children: [
+                    //                   Image.asset(imgFc1,
+                    //                       width: 150, fit: BoxFit.cover),
+                    //                   10.heightBox,
+                    //                   "Comple"
+                    //                       .text
+                    //                       .fontFamily(semibold)
+                    //                       .color(darkFontGrey)
+                    //                       .make(),
+                    //                   10.heightBox,
+                    //                   "\$600"
+                    //                       .text
+                    //                       .color(redColor)
+                    //                       .fontFamily(bold)
+                    //                       .size(16)
+                    //                       .make(),
+                    //                 ],
+                    //               )
+                    //                   .box
+                    //                   .white
+                    //                   .margin(const EdgeInsets.symmetric(
+                    //                       horizontal: 4))
+                    //                   .roundedSM
+                    //                   .padding(const EdgeInsets.all(8))
+                    //                   .make()),
+                    //     )),
                   ],
                 )),
               )),
