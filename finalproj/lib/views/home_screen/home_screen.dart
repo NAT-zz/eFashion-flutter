@@ -210,7 +210,7 @@ class HomeScreen extends StatelessWidget {
                                                                 ['p_imgs'][0],
                                                             width: 130,
                                                             height: 130,
-                                                            fit: BoxFit.cover),
+                                                            fit: BoxFit.fitHeight),
                                                         10.heightBox,
                                                         "${featuredData[index]['p_name']}"
                                                             .text

@@ -37,7 +37,6 @@ class ItemDetails extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back)),
             title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
             actions: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
               Obx(
                 () => IconButton(
                     onPressed: () {
@@ -72,7 +71,7 @@ class ItemDetails extends StatelessWidget {
                           return Image.network(
                             data["p_imgs"][index],
                             width: double.infinity,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fitHeight,
                           );
                         }),
 
