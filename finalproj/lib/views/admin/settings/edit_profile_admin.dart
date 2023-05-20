@@ -29,7 +29,7 @@ class EditProfileAdminScreen extends StatelessWidget {
                   children: [
                     //if data image url and controller path is empty
                     controller.snapshotData['imageUrl'] == '' && controller.proflieImgPath.isEmpty
-                        ? Image.asset(imgProfile, width: 50, fit: BoxFit.cover)
+                        ? Image.asset(imgB2, width: 50, fit: BoxFit.cover)
                             .box
                             .roundedFull
                             .clip(Clip.antiAlias)

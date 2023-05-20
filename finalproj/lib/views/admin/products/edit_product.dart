@@ -20,8 +20,13 @@ class EditProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.find<ProductAdminController>();
     controller.reset();
+    controller.categoryList.clear();
+    controller.subcategoryList.clear();
+    controller.getCategoryList();
+    
     controller.categoryValue.value = data['p_category'];
     controller.subcategoryValue.value = data['p_subcategory'];
+    controller.getSubcategoryList(controller.categoryValue.value);
     controller.nameController.text = data['p_name'];
     controller.quantityController.text = data['p_quantity'];
     controller.priceController.text = data['p_price'];
@@ -29,6 +34,7 @@ class EditProduct extends StatelessWidget {
     controller.imageLinks = data['p_imgs'];
     controller.listColor = data['p_colors'];
     controller.getSelectedColors();
+
     print(controller.imageLinks);
     print(controller.subcategoryValue.value);
     return Obx(()=>

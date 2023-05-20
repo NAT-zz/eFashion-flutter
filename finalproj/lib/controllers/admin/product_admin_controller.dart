@@ -36,8 +36,8 @@ class ProductAdminController extends GetxController {
     priceController.text = '';
     quantityController.text = '';
     descController.text = '';
-    subcategoryList.clear();
-    categoryList.clear();
+    // subcategoryList.clear();
+    // categoryList.clear();
     // categoryList = <String>[].obs;
     // subcategoryList = <String>[].obs;
 
@@ -112,8 +112,8 @@ class ProductAdminController extends GetxController {
     }
     if (imageLinks.isEmpty) {
       imageLinks.add('https://th.bing.com/th/id/OIF.mMe6RjQUzW445EsTHMrysA?pid=ImgDet&rs=1');
-      imageLinks.add('https://th.bing.com/th/id/OIF.mMe6RjQUzW445EsTHMrysA?pid=ImgDet&rs=1');
-      imageLinks.add('https://th.bing.com/th/id/OIF.mMe6RjQUzW445EsTHMrysA?pid=ImgDet&rs=1');
+      imageLinks.add('https://th.bing.com/th/id/R.8bcb16f411411119ab0bc0e2f061a5f3?rik=N%2fa83rG2kEDc9w&riu=http%3a%2f%2fwww.48hourslogo.com%2f48hourslogo_data%2f2015%2f10%2f13%2f201510132046539885.png&ehk=EeB9OptjfiW4YZn%2fUsOwTcXVSOQe14fd%2bmOp4A%2f%2bnhE%3d&risl=&pid=ImgRaw&r=0');
+      imageLinks.add('https://th.bing.com/th/id/OIP.PJ9rACKOclc_0_6L9IJbuAHaIa?pid=ImgDet&rs=1');
     }
   }
 

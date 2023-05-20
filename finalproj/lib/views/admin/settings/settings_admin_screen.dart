@@ -56,7 +56,11 @@ class Setting_Admin_Screen extends StatelessWidget {
               child: Column(
                 children: [
                   ListTile(
-                    leading: Image.asset(imgB2)
+                    leading: controller.snapshotData['imageUrl'] != '' ? Image.network(controller.snapshotData['imageUrl']).box
+                        .roundedFull
+                        .clip(Clip.antiAlias)
+                        .make()
+                    : Image.asset(imgB2)
                         .box
                         .roundedFull
                         .clip(Clip.antiAlias)
