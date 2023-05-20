@@ -48,8 +48,8 @@ class MessageScreen extends StatelessWidget {
                                     Get.to(
                                       () => const ChatAdminScreen(),
                                       arguments: [
-                                        data[index]['friend_name'],
-                                        data[index]['toId']
+                                        data[index]['sender_name'],
+                                        data[index]['fromId']
                                       ],
                                     );
                                   },
@@ -57,7 +57,7 @@ class MessageScreen extends StatelessWidget {
                                       backgroundColor: redColor,
                                       child: Icon(Icons.person,
                                           color: whiteColor)),
-                                  title: "${data[index]['friend_name']}"
+                                  title: "${data[index]['sender_name']}"
                                       .text
                                       .fontFamily(semibold)
                                       .color(darkFontGrey)

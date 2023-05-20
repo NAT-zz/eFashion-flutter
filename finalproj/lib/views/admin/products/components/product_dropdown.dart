@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 Widget productDropdown(
     hint, List<String> list, dropValue, ProductAdminController controller) {
+      print('$hint: ${dropValue.value}');
   return Obx(() => DropdownButtonHideUnderline(
         child: DropdownButton(
           hint: normalText(text: "$hint", color: fontGrey),

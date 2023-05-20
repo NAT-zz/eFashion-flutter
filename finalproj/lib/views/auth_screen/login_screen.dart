@@ -21,6 +21,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(AuthController());
+    // var controller = Get.put(dependency)
 
     return bgWidget(
         child: Scaffold(
@@ -79,7 +80,6 @@ class LoginScreen extends StatelessWidget {
                             .loginMethod(context: context)
                             .then((value) async {
                           if (value != null) {
-
                             print("value is not null");
                             VxToast.show(context, msg: loggedIn);
                             Get.off(() => const Home());

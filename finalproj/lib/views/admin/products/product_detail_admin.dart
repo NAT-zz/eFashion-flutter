@@ -27,19 +27,32 @@ class ProductDetailAdmin extends StatelessWidget {
         body: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          VxSwiper.builder(
-              autoPlay: true,
-              height: 350,
-              aspectRatio: 16 / 9,
-              itemCount: data['p_imgs'].length,
-              viewportFraction: 1.0,
-              itemBuilder: (context, index) {
-                return Image.network(
-                  data['p_imgs'][index],
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                );
-              }),
+                  VxSwiper.builder(
+                        autoPlay: true,
+                        height: 350,
+                        aspectRatio: 16 / 9,
+                        itemCount: data['p_imgs'].length,
+                        viewportFraction: 1.0,
+                        itemBuilder: (context, index) {
+                          return Image.network(
+                            data["p_imgs"][index],
+                            width: double.infinity,
+                            fit: BoxFit.fitHeight,
+                          );
+                        }),
+          // VxSwiper.builder(
+          //     autoPlay: true,
+          //     height: 350,
+          //     aspectRatio: 16 / 9,
+          //     itemCount: data['p_imgs'].length,
+          //     viewportFraction: 1.0,
+          //     itemBuilder: (context, index) {
+          //       return Image.network(
+          //         data['p_imgs'][index],
+          //         width: double.infinity,
+          //         fit: BoxFit.cover,
+          //       );
+          //     }),
           10.heightBox,
           // title and detais section
           // title!.text

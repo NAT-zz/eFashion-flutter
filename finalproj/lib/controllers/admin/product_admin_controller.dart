@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/consts.dart';
+import 'package:finalproj/consts/lists.dart';
 import 'package:finalproj/controllers/admin/home_admin_contronller.dart';
 import 'package:finalproj/models/category_model.dart';
 import 'package:finalproj/services/firestore_service.dart';
@@ -26,8 +27,40 @@ class ProductAdminController extends GetxController {
   var imageList = RxList<dynamic>.generate(3, (index) => null);
   var categoryValue = ''.obs;
   var subcategoryValue = ''.obs;
-  var selectedColorIndex = 0.obs;
+  var selectedColorIndex = [].obs;
+  var listColor = [];
 
+  reset() {
+    isLoading = false.obs;
+    nameController.text = '';
+    priceController.text = '';
+    quantityController.text = '';
+    descController.text = '';
+    subcategoryList.clear();
+    categoryList.clear();
+    // categoryList = <String>[].obs;
+    // subcategoryList = <String>[].obs;
+
+  // categories.clear();
+  
+  imageLinks.clear();
+  listColor.clear();
+  // imageList = RxList<dynamic>.generate(3, (index) => null);
+  categoryValue.value = '';
+  subcategoryValue.value = '';
+  selectedColorIndex.clear();
+  }
+
+  getSelectedColors() {
+    selectedColorIndex.clear();
+    if (listColor.isNotEmpty) {
+      for (int i=0; i<colorList.length; i++) {
+        if (listColor.contains(colorList[i])) {
+          selectedColorIndex.add(i);
+        }
+      }
+    }
+  }
   getSubcategoryList(title) async {
     subcategoryList.clear();
     var data = await rootBundle.loadString("lib/services/category_model.json");
@@ -64,6 +97,7 @@ class ProductAdminController extends GetxController {
     }
   }
 
+
   uploadImages() async {
     imageLinks.clear();
     for (var item in imageList) {
@@ -74,9 +108,12 @@ class ProductAdminController extends GetxController {
         await ref.putFile(item);
         var n = await ref.getDownloadURL();
         imageLinks.add(n);
-      } else {
-        imageLinks.add("https://res.cloudinary.com/natscloud/image/upload/v1672825091/csra7hesjtt4uuheblvr.png");
       }
+    }
+    if (imageLinks.isEmpty) {
+      imageLinks.add('https://th.bing.com/th/id/OIF.mMe6RjQUzW445EsTHMrysA?pid=ImgDet&rs=1');
+      imageLinks.add('https://th.bing.com/th/id/OIF.mMe6RjQUzW445EsTHMrysA?pid=ImgDet&rs=1');
+      imageLinks.add('https://th.bing.com/th/id/OIF.mMe6RjQUzW445EsTHMrysA?pid=ImgDet&rs=1');
     }
   }
 
@@ -87,7 +124,7 @@ class ProductAdminController extends GetxController {
       'is_featured': false,
       'p_category': categoryValue.value,
       'p_subcategory' : subcategoryValue.value,
-      'p_colors': FieldValue.arrayUnion([Colors.red.value, Colors.brown.value]),
+      'p_colors': FieldValue.arrayUnion(listColor),
       'p_imgs': FieldValue.arrayUnion(imageLinks),
       'p_wishlist': FieldValue.arrayUnion([]),
       'p_desc': descController.text,

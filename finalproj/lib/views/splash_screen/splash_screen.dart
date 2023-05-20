@@ -28,16 +28,15 @@ class _SplashScreenState extends State<SplashScreen>{
   changeScreen() {
     Future.delayed(const Duration(seconds: 3), () {
       // Get.to(() => const LoginScreen());
-
-      auth.authStateChanges().listen((User? user) {
+      auth.authStateChanges().listen((User? user) async {
         if(user == null && mounted){
           Get.to(() => const LoginScreen());
         }else{
           var controller = Get.put(HomeAdminController());
-          print(user!.uid);
-          // late QueryDocumentSnapshot snapshotData = FirestoreServices.getUser(currentUser!.uid);
-          print(controller.getUsername());
-          if (FirestoreServices.getUser(currentUser!.uid) != null) {
+          print('abc');
+          await controller.getUsername();
+          print(controller.username);
+          if (controller.username != '') {
             Get.to(() => const Home_Admin());
           } else {
             Get.to(() => const Home());
@@ -51,6 +50,14 @@ class _SplashScreenState extends State<SplashScreen>{
   @override
   void initState() {
     super.initState();
+    // auth.authStateChanges().listen((User? user) async {
+    //     if(user == null && mounted){
+    //       Get.to(() => const LoginScreen());
+    //     } else {         
+    //       var controller = Get.put(HomeAdminController());
+    //       changeScreen(controller);
+    //     }
+    // });
     changeScreen();
   }
   

@@ -44,6 +44,8 @@ const itemDetailButtonsList = [
   supportPolicy
 ];
 
+var colorList = [Colors.red.value, Colors.black.value, Colors.white.value, Colors.blue.value, Colors.green.value, Colors.yellow.value, Colors.grey.value, Colors.purple.value];
+
 const profileButtonsList = [orders, wishlist, message];
 
 const proflieButtonIcon = [icOrder, icHeart, icMessages];

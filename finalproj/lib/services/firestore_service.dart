@@ -67,6 +67,24 @@ class FirestoreServices {
         .where('vendors', arrayContains: currentUser!.uid)
         .snapshots();
   }
+  
+  static getDashboard() async {
+    var res = await Future.wait([
+      firestore.collection(productsCollection).where('vendor_id', isEqualTo: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs.length;
+      }),
+      firestore
+        .collection(ordersCollection)
+        .where('vendors', arrayContains: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs;
+      }),
+    ]);
+    return res;
+  }
 
   static getWishLists() {
     return firestore
@@ -82,7 +100,9 @@ class FirestoreServices {
         .snapshots();
   }
 
-    static getAllAdminMessages() {
+
+
+  static getAllAdminMessages() {
     return firestore
         .collection(chatsCollection)
         .where('toId', isEqualTo: currentUser!.uid)

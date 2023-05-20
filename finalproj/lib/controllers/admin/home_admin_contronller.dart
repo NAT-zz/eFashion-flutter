@@ -15,8 +15,10 @@ class HomeAdminController extends GetxController {
     var n = await firestore.collection(vendorsCollections).where('id', isEqualTo: currentUser!.uid).get().then((value) {
       if (value.docs.isNotEmpty) {
         return value.docs.single['vendor_name'];
+      } else {
+        return '';
       }
-      return null;
     });
+    username = n;
   }
 }

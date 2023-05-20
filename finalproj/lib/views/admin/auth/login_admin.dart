@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/controllers/admin/auth_admin_controller.dart';
+import 'package:finalproj/controllers/admin/home_admin_contronller.dart';
 import 'package:finalproj/controllers/auth_controller.dart';
 import 'package:finalproj/views/admin/home/home_admin.dart';
 import 'package:finalproj/views/auth_screen/signup_screen.dart';
@@ -80,10 +81,19 @@ class LoginAdminScreen extends StatelessWidget {
                             .loginMethod(context: context)
                             .then((value) async {
                           if (value != null) {
-
                             print("value is not null");
+                            // var adminController = Get.put(HomeAdminController());
+                            // adminController.getUsername();
+                            // if (adminController.username != ''){
+                            //   VxToast.show(context, msg: loggedIn);
+                            //   Get.offAll(() => const Home_Admin());
+                            // } else {
+                            //   VxToast.show(context, msg: loggedIn);
+                            //   Get.offAll(() => const Home());
+                            // }
                             VxToast.show(context, msg: loggedIn);
                             Get.offAll(() => const Home_Admin());
+                            
                           }else{
                             print("value is null");
                             controller.isLoading(false);

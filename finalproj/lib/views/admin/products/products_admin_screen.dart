@@ -20,6 +20,7 @@ class Products_Admin_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(ProductAdminController());
+    VxPopupMenuController show = VxPopupMenuController();
     // TODO: implement build
     return Scaffold(
         floatingActionButton: FloatingActionButton(
@@ -65,6 +66,7 @@ class Products_Admin_Screen extends StatelessWidget {
                               ),
                               trailing: VxPopupMenu(
                                 arrowSize: 0.0,
+                                controller: show,
                                 menuBuilder: () => Column(
                                   children: List.generate(
                                       popupMenuTitles.length,
@@ -89,17 +91,21 @@ class Products_Admin_Screen extends StatelessWidget {
                                                   if (data[index]['is_featured'] == true) {
                                                     controller.removeFeature(data[index].id);
                                                     VxToast.show(context, msg: "Removed");
+                                                    
                                                   } else {
                                                     controller.addFeature(data[index].id);
                                                     VxToast.show(context, msg: "Added");
                                                   }
+                                                  show.hideMenu();
                                                   break;
                                                 case 1:
                                                   Get.to(() => EditProduct(data: data[index]));
+                                                  show.hideMenu();
                                                   break;
                                                 case 2: 
                                                   controller.removeProduct(data[index].id);
-                                                  VxToast.show(context, msg: "Removed");
+                                                  show.hideMenu();
+                                                  VxToast.show(context, msg: "Removed product");
                                                   break;
                                                 default:
                                               }

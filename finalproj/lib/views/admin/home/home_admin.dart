@@ -14,7 +14,8 @@ class Home_Admin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    var controller = Get.put(HomeAdminController());
+    // var controller = Get.put(HomeAdminController());
+    var controller = Get.find<HomeAdminController>();
 
     var navScreen = [Home_Admin_Screen(), Products_Admin_Screen(), Orders_Admin_Screen(), Setting_Admin_Screen()];
 
