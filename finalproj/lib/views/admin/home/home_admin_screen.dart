@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finalproj/controllers/admin/order_admin_controller.dart';
 import 'package:finalproj/views/admin/Components/appbar_widget.dart';
 import 'package:finalproj/views/admin/Components/dashboard_button.dart';
 import 'package:finalproj/views/admin/products/product_detail_admin.dart';
@@ -17,6 +18,8 @@ class Home_Admin_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(OrderController());
+    
     // TODO: implement build
     return Scaffold(
       appBar: appbarWiget(dashboard),
@@ -33,14 +36,16 @@ class Home_Admin_Screen extends StatelessWidget {
                 data = data.sortedBy((a, b) => a['p_wishlist'].length.compareTo(b['p_wishlist'].length));
                 return Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 dashboardButton(context, title: products, count: "${data.length}", icon: icWholeSale),
-                dashboardButton(context, title: aorders, count: "1", icon: icOrders),
+                dashboardButton(context, title: aorders, count: "2", icon: icOrders),
               ],
             ),
             10.heightBox,
@@ -63,58 +68,16 @@ class Home_Admin_Screen extends StatelessWidget {
                 onTap: () {
                   Get.to(() => ProductDetailAdmin(data: data[index]));
                 },
-                leading: Image.network(data[index]['p_imgs'][0], width: 100, height: 100, fit: BoxFit.cover),
+                leading: Image.network(data[index]['p_imgs'][0], width: 50, height: 50, fit: BoxFit.cover),
                 title: boldText(text: "${data[index]['p_name']}", color: darkFontGrey),
                 subtitle: normalText(text: "\$ ${data[index]['p_price']}", color: darkFontGrey),
               )
               ),
             )
           ],
-        ),
-        );}
-              }
+        ),)
+        );}           }
       ),
-      // body: Padding(
-      //   padding: const EdgeInsets.all(8.0),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //         children: [
-      //           dashboardButton(context, title: products, count: "60", icon: icWholeSale),
-      //           dashboardButton(context, title: aorders, count: "15", icon: icOrders),
-      //         ],
-      //       ),
-      //       10.heightBox,
-      //       Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //         children: [
-      //           dashboardButton(context, title: rating, count: "60", icon: icBrands),
-      //           dashboardButton(context, title: totalSales, count: "15", icon: icOrder),
-      //         ],
-      //       ),
-      //       10.heightBox,
-      //       const Divider(),
-      //       10.heightBox,
-      //       boldText(text: "Popular Products", color: darkFontGrey, size: 16.0),
-      //       20.heightBox,
-      //       ListView(
-      //         physics: const BouncingScrollPhysics(),
-      //         shrinkWrap: true,
-      //         children: List.generate(3, (index) => ListTile(
-      //           onTap: () {
-                  
-      //           },
-      //           leading: Image.asset(imgB1, width: 100, height: 100, fit: BoxFit.cover),
-      //           title: boldText(text: "Product Title", color: darkFontGrey),
-      //           subtitle: normalText(text: "\$40", color: darkFontGrey),
-      //         )
-      //         ),
-      //       )
-      //     ],
-      //   ),
-      //   ),
     );
   }
 }

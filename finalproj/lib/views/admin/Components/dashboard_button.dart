@@ -12,10 +12,12 @@ Widget dashboardButton(context, {title, count, icon}) {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     boldText(text: title, size: 16.0),
-                    boldText(text: count, size: 20.0)
+                    boldText(text: count, size: 20.0),
                   ],
+                  
                 )),
                 Image.asset(icon, width: 40, color: whiteColor),
+                
               ],
             )
               .box

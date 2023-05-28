@@ -98,21 +98,24 @@ class EditProfileAdminScreen extends StatelessWidget {
                                   // if old password matches database
                                   if(controller.snapshotData['password'] == controller.oldpasswordController.text)
                                   {
-                                    await controller.changeAuthPassword(
+                                    if (controller.newpasswordController.text.isNotEmpty) {
+                                      await controller.changeAuthPassword(
                                       email: controller.snapshotData['email'],
                                       password: controller.oldpasswordController.text,
                                       newpassword: controller.newpasswordController.text
                                     );
-
-
-                                    await controller.updateProfile(
+                                    await controller.updateProfileNoPassword(
+                                        imgUrl: controller.proflieImageLink,
+                                        name: controller.nameController.text);
+                                    VxToast.show(context, msg: "Updated");
+                                    } else {
+                                      await controller.updateProfile(
                                         imgUrl: controller.proflieImageLink,
                                         name: controller.nameController.text,
                                         password: controller
                                             .newpasswordController.text);
-
-                                    VxToast.show(context, msg: "Updated");
-                                     
+                                      VxToast.show(context, msg: "Updated");
+                                    }                                     
                                   }else{
                                     VxToast.show(context, msg: "Incorrect password");
                                     controller.isloading(false);

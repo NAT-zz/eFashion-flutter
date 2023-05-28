@@ -1,4 +1,5 @@
 
+import 'package:finalproj/views/admin/settings/settings_admin_screen.dart';
 import 'package:finalproj/views/profile_screen/edit_profile.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
@@ -39,6 +40,7 @@ class ShopSetting extends StatelessWidget {
           des: controller.descriptionController.text,
         );
         VxToast.show(context, msg: "Updated");
+        Get.to(() => const Setting_Admin_Screen());
        }, child: normalText(text: "Save", color: darkFontGrey))], 
       ),
       body: Padding(
@@ -49,6 +51,7 @@ class ShopSetting extends StatelessWidget {
               controller: controller.shopNameController,
               title: "Shop's Name",
               hint: controller.snapshotData['shop_name'],
+              enabled: false,
             ),
             10.heightBox,
             customTextFieldAdmin(

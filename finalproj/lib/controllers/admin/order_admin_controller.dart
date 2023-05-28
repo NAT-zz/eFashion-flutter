@@ -13,11 +13,14 @@ class OrderController extends GetxController {
 
   getOrders(data) {
     orders.clear();
+    num total = 0;
     for (var item in data['orders']) {
       if (item['vendor_id']==currentUser!.uid) {
         orders.add(item);
+        total = total + item['tprice'] * item['qty'];
       }
     }
+    return total;
   }
 
   changeStatus({title, status, docID}) async {
@@ -27,4 +30,14 @@ class OrderController extends GetxController {
     } , SetOptions(merge: true));
     // isloading(false);
   }
+
+  countOrders() async {
+    await firestore
+          .collection(ordersCollection)
+          .where('vendors', arrayContains: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs.length;
+  });
+}
 }
