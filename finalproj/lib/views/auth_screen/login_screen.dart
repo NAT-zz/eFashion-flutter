@@ -69,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                 ) : ourButton(
                     color: redColor,
                     title: login,
-                    textColor: whiteColor,
+                    textColor: redColor,
                     onPress: 
                       () async {
                         controller.isLoading(true);

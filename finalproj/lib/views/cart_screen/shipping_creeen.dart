@@ -35,7 +35,7 @@ class ShippingDetails extends StatelessWidget {
               }
             },
             color: redColor,
-            textColor: whiteColor,
+            textColor: redColor,
             title: "Continue",
           ),
         ),
