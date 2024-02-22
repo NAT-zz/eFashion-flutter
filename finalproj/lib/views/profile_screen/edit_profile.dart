@@ -5,8 +5,6 @@ import 'package:finalproj/controllers/profile_controller.dart';
 import 'package:finalproj/widgets_common/bg_widget.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class EditProfileScreen extends StatelessWidget {

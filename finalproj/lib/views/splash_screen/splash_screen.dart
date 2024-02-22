@@ -1,16 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:finalproj/consts/colors.dart';
 import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/controllers/admin/home_admin_contronller.dart';
-import 'package:finalproj/services/firestore_service.dart';
 import 'package:finalproj/views/admin/home/home_admin.dart';
 import 'package:finalproj/views/auth_screen/login_screen.dart';
 import 'package:finalproj/views/home_screen/home.dart';
-import 'package:finalproj/views/home_screen/home_screen.dart';
 import 'package:finalproj/widgets_common/applogo_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {

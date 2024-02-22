@@ -1,18 +1,13 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:finalproj/views/profile_screen/edit_profile.dart';
-import 'package:finalproj/widgets_common/custom_textfield.dart';
 import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/consts.dart';
-import '../../../consts/lists.dart';
 import '../../../controllers/admin/chat_admin_controller.dart';
-import '../../../controllers/chat_controller.dart';
 import '../../../services/firestore_service.dart';
 import '../../../widgets_common/loading_indicator.dart';
 import '../../chat_screen/components/sender_bubble.dart';
-import 'components/chat_bubble.dart';
 
 class ChatAdminScreen extends StatelessWidget {
   const ChatAdminScreen({Key? key}) : super(key: key);
@@ -23,7 +18,7 @@ class ChatAdminScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: darkFontGrey),
+          icon: const Icon(Icons.arrow_back, color: darkFontGrey),
           onPressed: () {
             Get.back();
           }, 

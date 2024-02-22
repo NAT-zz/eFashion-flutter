@@ -5,8 +5,6 @@ import 'package:finalproj/services/firestore_service.dart';
 import 'package:finalproj/views/category_creen/item_details.dart';
 import 'package:finalproj/widgets_common/bg_widget.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class CategoryDetails extends StatefulWidget {

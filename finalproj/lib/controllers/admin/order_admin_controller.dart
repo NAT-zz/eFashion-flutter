@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/consts.dart';
-import 'package:finalproj/models/category_model.dart';
-import 'package:finalproj/services/firestore_service.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {

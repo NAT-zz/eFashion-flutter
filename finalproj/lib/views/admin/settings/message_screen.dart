@@ -1,16 +1,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/views/admin/settings/chat_admin_screen.dart';
-import 'package:finalproj/views/profile_screen/edit_profile.dart';
-import 'package:finalproj/widgets_common/custom_textfield.dart';
 import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/consts.dart';
-import '../../../consts/lists.dart';
 import '../../../services/firestore_service.dart';
 import '../../../widgets_common/loading_indicator.dart';
-import 'package:intl/intl.dart' as intl;
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({Key? key}) : super(key: key);

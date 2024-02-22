@@ -3,8 +3,6 @@ import 'package:finalproj/consts/lists.dart';
 import 'package:finalproj/controllers/product_controller.dart';
 import 'package:finalproj/views/category_creen/category_details.dart';
 import 'package:finalproj/widgets_common/bg_widget.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class CategoryScreen extends StatelessWidget {

@@ -1,5 +1,4 @@
 import 'package:finalproj/consts/consts.dart';
-import 'package:finalproj/widgets_common/text_style.dart';
 
 
 Widget ProductImage({required label, onPressed}) {

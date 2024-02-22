@@ -1,8 +1,6 @@
 import 'package:finalproj/consts/consts.dart';
-import 'package:finalproj/consts/lists.dart';
 import 'package:finalproj/controllers/auth_controller.dart';
 import 'package:finalproj/views/auth_screen/login_screen.dart';
-import 'package:finalproj/views/home_screen/home.dart';
 import 'package:finalproj/widgets_common/applogo_widget.dart';
 import 'package:finalproj/widgets_common/bg_widget.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';

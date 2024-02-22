@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/views/admin/settings/message_screen.dart';
 import 'package:finalproj/views/admin/settings/shop_setting_screen.dart';
-import 'package:finalproj/views/profile_screen/edit_profile.dart';
 import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
 

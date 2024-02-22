@@ -1,13 +1,7 @@
-import 'dart:io';
 
 import 'package:finalproj/consts/consts.dart';
-import 'package:finalproj/controllers/admin/auth_admin_controller.dart';
-import 'package:finalproj/controllers/admin/home_admin_contronller.dart';
 import 'package:finalproj/controllers/auth_controller.dart';
 import 'package:finalproj/views/admin/home/home_admin.dart';
-import 'package:finalproj/views/auth_screen/signup_screen.dart';
-import 'package:finalproj/views/home_screen/home.dart';
-import 'package:finalproj/views/home_screen/home_screen.dart';
 import 'package:finalproj/widgets_common/applogo_widget.dart';
 import 'package:finalproj/widgets_common/bg_widget.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';

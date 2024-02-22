@@ -35,7 +35,7 @@ class SearchScreen extends StatelessWidget {
                   )
                   .toList();
 
-              print("Search result: " + data[0]['p_name'].toString());
+              print("Search result: ${data[0]['p_name']}");
 
               return Padding(
                 padding: const EdgeInsets.all(8.0),

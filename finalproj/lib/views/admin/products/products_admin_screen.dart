@@ -7,12 +7,10 @@ import 'package:finalproj/views/admin/products/product_detail_admin.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/consts.dart';
-import 'package:intl/intl.dart' as intl;
 import '../../../services/firestore_service.dart';
 import '../../../widgets_common/loading_indicator.dart';
 import '../../../widgets_common/text_style.dart';
 import '../Components/appbar_widget.dart';
-import '../Components/dashboard_button.dart';
 
 class Products_Admin_Screen extends StatelessWidget {
   const Products_Admin_Screen({Key? key}) : super(key: key);

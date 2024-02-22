@@ -1,12 +1,10 @@
 
-import 'package:finalproj/views/profile_screen/edit_profile.dart';
 import 'package:finalproj/widgets_common/custom_textfield.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
 import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/consts.dart';
-import '../../../consts/lists.dart';
 import '../../../controllers/admin/profile_admin_controller.dart';
 
 class ShopSetting extends StatelessWidget {

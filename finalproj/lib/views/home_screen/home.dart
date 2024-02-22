@@ -5,8 +5,6 @@ import 'package:finalproj/views/category_creen/category_screen.dart';
 import 'package:finalproj/views/home_screen/home_screen.dart';
 import 'package:finalproj/views/profile_screen/profile_screen.dart';
 import 'package:finalproj/widgets_common/exit_dialog.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {

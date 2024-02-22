@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/controllers/home_controller.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {

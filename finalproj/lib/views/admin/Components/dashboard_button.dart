@@ -1,5 +1,4 @@
 import 'package:finalproj/consts/consts.dart';
-import 'package:get/get.dart';
 
 import '../../../widgets_common/text_style.dart';
 

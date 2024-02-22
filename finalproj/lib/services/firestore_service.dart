@@ -1,5 +1,4 @@
 import 'package:finalproj/consts/consts.dart';
-import 'package:flutter/services.dart';
 
 class FirestoreServices {
   static getUser(uid) {

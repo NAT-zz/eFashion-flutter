@@ -5,7 +5,6 @@ import 'package:finalproj/views/admin/orders/order_admin_screen.dart';
 import 'package:finalproj/views/admin/settings/settings_admin_screen.dart';
 import 'package:get/get.dart';
 
-import '../../../widgets_common/text_style.dart';
 import '../products/products_admin_screen.dart';
 
 class Home_Admin extends StatelessWidget {
@@ -17,7 +16,7 @@ class Home_Admin extends StatelessWidget {
     // var controller = Get.put(HomeAdminController());
     var controller = Get.find<HomeAdminController>();
 
-    var navScreen = [Home_Admin_Screen(), Products_Admin_Screen(), Orders_Admin_Screen(), Setting_Admin_Screen()];
+    var navScreen = [const Home_Admin_Screen(), const Products_Admin_Screen(), const Orders_Admin_Screen(), const Setting_Admin_Screen()];
 
     var bottomNavBar = [
       const BottomNavigationBarItem(icon: Icon(Icons.home), label: dashboard),

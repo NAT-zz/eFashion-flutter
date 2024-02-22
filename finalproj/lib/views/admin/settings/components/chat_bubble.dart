@@ -8,10 +8,10 @@ Widget ChatBubble() {
     child: Container(
         padding: const EdgeInsets.all(12),
         margin: const EdgeInsets.only(bottom: 8),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             // color: data['uid'] == currentUser!.uid ? redColor : darkFontGrey,
             color: darkFontGrey,
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
               bottomLeft: Radius.circular(20),

@@ -3,8 +3,6 @@ import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/services/firestore_service.dart';
 import 'package:finalproj/views/chat_screen/chat_screen.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class MessagesScreen extends StatelessWidget {

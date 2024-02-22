@@ -8,8 +8,6 @@ import 'package:finalproj/views/home_screen/components/featured_button.dart';
 import 'package:finalproj/views/home_screen/search_screen.dart';
 import 'package:finalproj/widgets_common/home_buttons.dart';
 import 'package:finalproj/widgets_common/loading_indicator.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {

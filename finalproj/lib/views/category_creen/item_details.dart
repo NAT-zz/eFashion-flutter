@@ -3,9 +3,6 @@ import 'package:finalproj/consts/lists.dart';
 import 'package:finalproj/controllers/product_controller.dart';
 import 'package:finalproj/views/chat_screen/chat_screen.dart';
 import 'package:finalproj/widgets_common/our_button.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class ItemDetails extends StatelessWidget {
@@ -15,9 +12,9 @@ class ItemDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("purple: " + Colors.purple.value.toString());
-    print("blue: " + Colors.blue.value.toString());
-    print("black: " + Colors.black.value.toString());
+    print("purple: ${Colors.purple.value}");
+    print("blue: ${Colors.blue.value}");
+    print("black: ${Colors.black.value}");
 
     var controller = Get.put(ProductController());
 
@@ -331,7 +328,7 @@ class ItemDetails extends StatelessWidget {
                       if (controller.quantity.value > 0) {
                         controller.addToCart(
                           color: data['p_colors'][controller.colorIndex.value],
-                          context: context,
+                          context: context, 
                           vendorId: data['vendor_id'],
                           img: data['p_imgs'][0],
                           qty: controller.quantity.value,

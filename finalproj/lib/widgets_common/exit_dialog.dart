@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:finalproj/consts/consts.dart';
 import 'package:finalproj/widgets_common/our_button.dart';

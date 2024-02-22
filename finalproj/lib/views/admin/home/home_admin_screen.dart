@@ -7,7 +7,6 @@ import 'package:finalproj/widgets_common/text_style.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/consts.dart';
-import 'package:intl/intl.dart' as intl;
 
 import '../../../services/firestore_service.dart';
 import '../../../widgets_common/loading_indicator.dart';
