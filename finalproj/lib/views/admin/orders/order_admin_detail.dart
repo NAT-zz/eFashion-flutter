@@ -17,13 +17,14 @@ class OrderDetailAdmin extends StatefulWidget {
 
 class _OrderDetailAdminState extends State<OrderDetailAdmin> {
   var controller = Get.find<OrderController>();
+  num total = 0;
   // var controller = Get.put(OrderController());
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     print(widget.data.id);
-    controller.getOrders(widget.data);
+    total = controller.getOrders(widget.data);
     // controller.orders = widget.data['orders'][0];
     controller.confirmed.value = widget.data['order_confirmed'];
     controller.onDelivery.value = widget.data['order_on_delivery'];
@@ -157,7 +158,7 @@ class _OrderDetailAdminState extends State<OrderDetailAdmin> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 boldText(text: "Total Amount", color: darkFontGrey),
-                                boldText(text: "\$ ${widget.data['total_amount']}", color: redColor, size: 16.0)
+                                boldText(text: "\$ ${total.toString()}", color: redColor, size: 16.0)
                                 // "Total Amount".text.fontFamily(semibold).make(),
                                 // "${widget.data['total_amount']}"
                                 //     .text

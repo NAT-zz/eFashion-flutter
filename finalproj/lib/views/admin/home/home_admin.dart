@@ -19,7 +19,7 @@ class Home_Admin extends StatelessWidget {
     var navScreen = [const Home_Admin_Screen(), const Products_Admin_Screen(), const Orders_Admin_Screen(), const Setting_Admin_Screen()];
 
     var bottomNavBar = [
-      const BottomNavigationBarItem(icon: Icon(Icons.home), label: dashboard),
+      BottomNavigationBarItem(icon: Image.asset(icHome, color: darkFontGrey, width: 24,), label: dashboard),
       BottomNavigationBarItem(icon: Image.asset(icWholeSale, color: darkFontGrey, width: 24), label: products),
       BottomNavigationBarItem(icon: Image.asset(icOrders, color: darkFontGrey, width: 24), label: aorders),
       BottomNavigationBarItem(icon: Image.asset(icSetting, color: darkFontGrey, width: 24), label: settings)

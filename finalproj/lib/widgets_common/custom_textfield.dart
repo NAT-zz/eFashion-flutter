@@ -33,12 +33,13 @@ Widget customTextField({String? title, String? hint, controller, isPass = false}
 }
 
 
-Widget customTextFieldAdmin({String? title, String? hint, controller, isPass = false, isDesc = false}) {
+Widget customTextFieldAdmin({String? title, String? hint, controller, isPass = false, isDesc = false, enabled = true}) {
   return 
       TextFormField(
         maxLines: isDesc ? 4 : 1,
         obscureText: isPass,
         controller: controller,
+        enabled: enabled,
         decoration: InputDecoration(
           hintStyle: const TextStyle(
             fontFamily: semibold,

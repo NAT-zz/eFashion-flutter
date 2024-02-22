@@ -56,6 +56,15 @@ class ProfileAdminController extends GetxController {
     isloading(false);
   }
 
+  updateProfileNoPassword({name, imgUrl}) async {
+    var store = firestore.collection(vendorsCollections).doc(currentUser!.uid);
+    await store.set({
+      'vendor_name': name,
+      'imageUrl' : imgUrl
+    } , SetOptions(merge: true));
+    isloading(false);
+  }
+
   updateShop({name, address, mobile, website, des}) async {
     var store = firestore.collection(vendorsCollections).doc(currentUser!.uid);
     await store.set({

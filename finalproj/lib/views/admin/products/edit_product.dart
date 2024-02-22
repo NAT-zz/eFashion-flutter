@@ -49,7 +49,7 @@ class EditProduct extends StatelessWidget {
             controller.isLoading.value ? loadingIndicator() :
             TextButton(onPressed: () async {
               controller.isLoading(true);
-              await controller.uploadImages();
+              // await controller.uploadImages();
               await controller.uploadProduct(context);
               Get.back();
             }, child: boldText(text: "Save", color: darkFontGrey)),
@@ -92,7 +92,8 @@ class EditProduct extends StatelessWidget {
               productDropdown("Subcategory", controller.subcategoryList, controller.subcategoryValue, controller),
               10.heightBox,
               const Divider(color: whiteColor),
-              boldText(text: "Choose product images"),
+              boldText(text: "Choose product images", color: darkFontGrey),
+              10.heightBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(
@@ -112,11 +113,10 @@ class EditProduct extends StatelessWidget {
                   }),
                 )
               ),
-              5.heightBox,
-              normalText(text: "First image will be your display", color: lightGrey),
+              10.heightBox,
               const Divider(color: whiteColor),
               10.heightBox,
-              boldText(text: "Choose product images"),
+              boldText(text: "Choose product colors", color: darkFontGrey),
               10.heightBox,
               Obx(() => Wrap(
                 spacing: 8.0,

@@ -15,7 +15,7 @@ class ChatsAdminController extends GetxController {
   var friendName = Get.arguments[0];
   var friendId = Get.arguments[1];
 
-  var senderName = Get.find<HomeAdminController>().username;
+  var senderName = Get.put(HomeAdminController()).username;
   var currentId = currentUser!.uid;
 
   var msgController = TextEditingController();

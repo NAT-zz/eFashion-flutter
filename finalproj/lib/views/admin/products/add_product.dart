@@ -32,6 +32,7 @@ class AddProduct extends StatelessWidget {
                         controller.isLoading(true);
                         await controller.uploadImages();
                         await controller.uploadProduct(context);
+                        
                         Get.back();
                       },
                       child: boldText(text: "Save", color: darkFontGrey)),
@@ -76,7 +77,8 @@ class AddProduct extends StatelessWidget {
                       controller.subcategoryValue, controller),
                   10.heightBox,
                   const Divider(color: whiteColor),
-                  boldText(text: "Choose product images"),
+                  boldText(text: "Choose product images", color: darkFontGrey),
+                  10.heightBox,
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: List.generate(
@@ -92,13 +94,10 @@ class AddProduct extends StatelessWidget {
                                 controller.pickImage(index, context);
                               }),
                       )),
-                  5.heightBox,
-                  normalText(
-                      text: "First image will be your display",
-                      color: lightGrey),
+                  10.heightBox,
                   const Divider(color: whiteColor),
                   10.heightBox,
-                  boldText(text: "Choose product images"),
+                  boldText(text: "Choose product colors", color: darkFontGrey),
                   10.heightBox,
                   Obx(() => Wrap(
                       spacing: 8.0,

@@ -73,10 +73,11 @@ class Orders_Admin_Screen extends StatelessWidget {
                                     boldText(text: unpaid, color: redColor),
                                   ],
                                 ),
+                                10.heightBox,
                               ],
                             ),
                             trailing:
-                                boldText(text: "\$ ${data[index]['total_amount']}", color: darkFontGrey),
+                                boldText(text: "\$ ${controller.getOrders(data[index]).toString()}", color: darkFontGrey),
                           );}),
                 ),
               );
